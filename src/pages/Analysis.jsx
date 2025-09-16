@@ -1,4 +1,5 @@
-import 'src/styles/Analysis.css';
+import "./";
+
 function Analysis() {
   function CategoryButton(props) {
     return (
