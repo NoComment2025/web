@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    font-family: pretendard;
+    padding: 0;
+    font-size: 16px;
+}
+
+.NavBar {
+    background-color: #181818;
+    width: 283px;
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 141px;
+    height: 33px;
+    margin: 50px 0 0 70px;
+}
+
+.choice {
+    margin: 0 0 200px 38px;
+}
+
+.choiceBtn {
+    text-align: center;
+    width: 205px;
+    height: 60px;
+    color: #fff;
+    background: none;
+    border: none;
+    margin-bottom: 31px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.choiceBtn:hover {
+    background-color: #172035;
+}
+
+.userInf { 
+    display: flex;
+    color: #fff;
+    background-color: #272727;
+    width: 283px;
+    height: 113px;
+    text-align: center;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    flex-direction: column;
+}
+
+#user {
+    display: flex;
+}
+
+#profilePicture {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: #7f7f7f;
+    margin: 22px 0 0 39px;
+}
+
+#nickname {
+    margin: 26px 0 0 13px;
+}
+
+#userId {
+    margin: 0px 0 0 13px;
+}
+
+#logOut {
+    background: none;
+    border: none;
+    color: #fff;
+    width: 196px;
+    height: 19px;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+#logOut:hover {
+    background-color: #172035;
+}
