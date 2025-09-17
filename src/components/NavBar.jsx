@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import Text from "./Text"
+import logo from "../assets/ORATO-logo.png"
 
 const NavBarContainer = styled.div`
   background-color: #181818;
@@ -87,7 +88,7 @@ function NavBar() {
   return (
     <NavBarContainer>
       <Logo>
-        <img src="../assets/ORATO-logo.png" alt="Orato logo" />
+        <img src={logo} alt="ORATO 로고" />
       </Logo>
 
       <Choice>
