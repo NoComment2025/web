@@ -1,3 +1,11 @@
+.App {
+    display: grid;
+    background-color: #000000;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    height: 100vh;
+    width: 100vw;
+}
 /*분석창*/
 .analyze {
     display: grid;
@@ -25,7 +33,7 @@
     grid-template-rows: repeat(10, 1fr);
     border-radius: 15px;
     grid-row: 4/8;
-    grid-column: 2/8;
+    grid-column: 3/9;
 }
 
 .subject-box span {
@@ -77,14 +85,14 @@
 }
 
 #timeY {
-    grid-row: 6/8;
+    grid-row: 7/8;
     grid-column: 30/40;
     color: #AEAEAE;
     font-size: 12px;
 }
 
 #timeN {
-    grid-row: 6/8;
+    grid-row: 7/8;
     grid-column: 40/50;
     color: #AEAEAE;
     font-size: 12px;
@@ -93,7 +101,7 @@
 /*파일 제출 창*/
 #file-submit {
     grid-row: 10/14;
-    grid-column: 2/8;
+    grid-column: 3/9;
     background-color: #000000;
     border: none;
     border-radius: 30px;
@@ -105,17 +113,9 @@
 /*제출 버튼*/
 #submit-button {
     grid-row: 16/17;
-    grid-column: 2/8;
+    grid-column: 3/9;
     background-color: #3048D2;
     padding: 0;
     border: none;
     border-radius: 10px;
-}
-
-#root {
-    display: grid;
-    background-color: #000000;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    height: 100vh;
 }
