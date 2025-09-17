@@ -92,7 +92,7 @@ function Analysis() {
           <div id="file-submit">
             <span id='img1'></span>
             <span id='img2'></span>
-            <Text>끌어서 가져오거나 클릭해 파일 선택하기</Text>
+            <Text>끌어서 가져오거나 클릭해 파일 선택하기.</Text>
           </div>
 
           <button id="submit-button" type="submit">
