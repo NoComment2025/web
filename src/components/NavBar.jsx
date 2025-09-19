@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import Text from "./Text"
+import Text from "./atom/Text"
 import logo from "../assets/ORATO-logo.png"
 
 const NavBarContainer = styled.div`

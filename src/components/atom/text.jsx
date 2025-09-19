@@ -2,10 +2,10 @@ import styled, {css} from 'styled-components';
 
 const baseTextStyle =  css`
   font-family: 'Pretendard', sans-serif;
-  font-size: ${(props) => props.fontSize || '1rem'};
-  font-weight: ${(props) => props.fontWeight || '400'};
+  font-size: ${(props) => props.$fontSize || '1rem'};
+  font-weight: ${(props) => props.$fontWeight || '400'};
   color: ${(props) => props.color || '#f5f5f5'};
-  line-height: ${(props) => props.lineHeight || '1.5'};
+  line-height: ${(props) => props.$lineHeight || '1.5'};
   margin: ${(props) => props.$margin || '0'};
   text-align: ${(props) => props.textAlign || 'left'};
   `;
