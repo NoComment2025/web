@@ -9,6 +9,15 @@ const baseButtonStyle = css`
   color: #181818;
   `
 
+  /**
+ * @사용가능한_variant_값
+ *   - 'grayBorder': 배경색 없이 회색 테두리를 가지는 버튼
+ *   - 'darkgray': 어두운 회색 배경의 버튼
+ *   - 'lightgray': 밝은 회색 배경의 버튼
+ * @예시 <Button variant="grayBorder">회원가입</Button>
+ * @예시 <Button variant="lightgray">이전</Button>
+ */
+
 const buttonVariants = {
   grayBorder: css`
     background-color: none;
@@ -17,8 +26,10 @@ const buttonVariants = {
   `,
   darkgray: css`
     background-color: #272727;
+  `,
+  lightgray: css`
+    background-color: #E6E6E6;
   `
-  
 }
 
 const StyledButton = styled.button`
