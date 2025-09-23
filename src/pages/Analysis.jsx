@@ -2,15 +2,18 @@ import { useState } from "react";
 import "../styles/Analysis.css";
 import NavBar from '../components/NavBar';
 import Text from '../components/Text';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-function CategoryButton({ id, name, onClick, isActive }) {
+function CategoryButton({ id, name, onClick, isTagActive }) {
   return (
     <button
+      type="button"
       id={id}
       onClick={onClick}
       style={{
         gridRow: '7/8',
-        backgroundColor: isActive ? '#FF6B6B' : '#151F5A',
+        backgroundColor: isTagActive ? '#3048D2' : '#151F5A',
         border: 'none',
         borderRadius: '10px',
         fontSize: '14px',
@@ -24,12 +27,30 @@ function CategoryButton({ id, name, onClick, isActive }) {
 
 function Analysis() {
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedTime, setSelectedTime] = useState(null);
+  const [date, setDate] = useState(new Date());
+  const [isDragging, setIsDragging] = useState(false);
+
+
+  const handleDrag = (e, dragging) => {
+    e.preventDefault();
+    setIsDragging(dragging);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setIsDragging(false);
+    
+    const files = e.dataTransfer.files;
+    console.log("파일을 서버로 보내는 기능 만들어야함")
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(selectedCategory)
 
     if (!selectedCategory) {
-      alert("태그를 선택해주세요.");
+      console.log("제출 안됨;;")
       return;
     }
 
@@ -53,43 +74,63 @@ function Analysis() {
               id="category-balphyo" 
               name="발표"
               onClick={() => setSelectedCategory("발표")}
-              isActive={selectedCategory === "발표"}
+              isTagActive={selectedCategory === "발표"}
             />
             <CategoryButton 
               id="category-yeonseol" 
               name="연설"
               onClick={() => setSelectedCategory("연설")}
-              isActive={selectedCategory === "연설"}
+              isTagActive={selectedCategory === "연설"}
             />
             <CategoryButton 
               id="category-gangyeon" 
               name="강연" 
               onClick={() => setSelectedCategory("강연")}
-              isActive={selectedCategory === "강연"}
+              isTagActive={selectedCategory === "강연"}
             />
             <CategoryButton 
               id="category-guitar" 
               name="기타" 
               onClick={() => setSelectedCategory("기타")}
-              isActive={selectedCategory === "기타"}
+              isTagActive={selectedCategory === "기타"}
             />
 
             <div id='divid'></div>
 
             <label id="timeY" className='custom-radio'>
-              <input type="radio" id="timelimitY" name="timelimit" value="있음" />
-              <span></span>
+              <input type="radio" id="timelimitY" name="timelimit" value="있음" onClick={() => setSelectedTime("yes")}/>
+              <span
+              ></span>
               시간 제한 있음
             </label>
 
             <label id='timeN' className='custom-radio'>
-              <input type="radio" id="timelimitN" name="timelimit" value="없음" />
-              <span></span>
+              <input type="radio" id="timelimitN" name="timelimit" value="없음" onClick={() => setSelectedTime("no")}/>
+              <span
+              ></span>
               시간 제한 없음
             </label>
+
+            <div id="limitnum">
+            {selectedTime === "yes" && (
+              <DatePicker
+                selected={date}
+                onChange={(d) => setDate(d)}
+                dateFormat="hh 시 mm 분 ss 초"
+                className="datepicker-input"
+              />
+            )}
+            </div>
+
           </div>
 
-          <div id="file-submit">
+          <div 
+            id="file-submit"
+            onDragEnter={(e) => handleDrag(e, true)}
+            onDragOver={(e) => handleDrag(e, true)}
+            onDragLeave={(e) => handleDrag(e, false)}
+            onDrop={handleDrop}
+          >
             <span id='img1'></span>
             <span id='img2'></span>
             <Text>끌어서 가져오거나 클릭해 파일 선택하기.</Text>
