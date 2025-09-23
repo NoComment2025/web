@@ -33,7 +33,7 @@
     grid-template-rows: repeat(10, 1fr);
     border-radius: 15px;
     grid-row: 4/8;
-    grid-column: 3/9;
+    grid-column: 2/9;
 }
 
 .subject-box span {
@@ -62,38 +62,39 @@
 
 /*카테고리 버튼*/
 #category-balphyo {
-    grid-column: 3/7;
+    grid-column: 4/8;
 }
 
 #category-yeonseol {
-    grid-column: 8/12;
+    grid-column: 9/13;
 }
 
 #category-gangyeon {
-    grid-column: 13/17;
+    grid-column: 14/18;
 }
 
 #category-guitar {
-    grid-column: 18/22;
+    grid-column: 19/23;
 }
 
 #divid {
     background-color: #272727;
     grid-row: 5/10;
-    grid-column: 25;
+    grid-column: 27;
     border-radius: 10px;
+    width: 3px;
 }
 
 #timeY {
     grid-row: 7/8;
-    grid-column: 30/40;
+    grid-column: 31/40;
     color: #AEAEAE;
     font-size: 12px;
 }
 
 #timeN {
     grid-row: 7/8;
-    grid-column: 40/50;
+    grid-column: 41/50;
     color: #AEAEAE;
     font-size: 12px;
 }
@@ -106,14 +107,39 @@
     width: 20px;
     height: 20px;
     display: inline-block;
-    border: 1px solid #ffffff;
+    border: 1px solid #AEAEAE;
     border-radius: 25%;
     vertical-align: middle;
     margin-right: 5px;
 }
 
 .custom-radio input[type="radio"]:checked + span {
-    background-color: #5af63b;
+    background-color: #AEAEAE;
+}
+
+#limitnum {
+    grid-row: 8/9;
+    grid-column: 31/40;
+    position: relative; /* 부모를 기준으로 절대 위치 */
+    height: 0;          /* 공간 차지 안함 */
+}
+
+
+.datepicker-input {
+  width: 100%;
+  height: 20px;
+  border-radius: 25px;
+  border: 0px solid #3048D2;
+  background-color: #3B3B3B;
+  text-align: center;
+  color: #7F7F7F;
+  font-size: 12px;
+  margin-top: 10px;
+
+}
+
+.react-datepicker__tab-loop {
+    display: none;
 }
 
 /*파일 제출 창*/
@@ -122,7 +148,7 @@
     grid-template-columns: repeat(20, 1fr);
     grid-template-rows: repeat(10, 1fr);
     grid-row: 10/17;
-    grid-column: 3/9;
+    grid-column: 2/9;
     background-color: #000000;
     border: none;
     border-radius: 30px;
@@ -134,6 +160,7 @@
 #file-submit span#img1 {
     grid-column: 9/12;
     grid-row: 5/7;
+    margin-left: 10px;
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='57' height='57' viewBox='0 0 57 57' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M6.33333 0H0V6.33333H6.33333V0ZM50.6667 12.6667H57V31.6667H50.6667V19H19V50.6667H31.6667V57H12.6667V12.6667H50.6667ZM12.6667 0H19V6.33333H12.6667V0ZM6.33333 12.6667H0V19H6.33333V12.6667ZM0 25.3333H6.33333V31.6667H0V25.3333ZM6.33333 38H0V44.3333H6.33333V38ZM25.3333 0H31.6667V6.33333H25.3333V0ZM44.3333 0H38V6.33333H44.3333V0ZM38 44.3333V38H57V44.3333H50.6667V50.6667H44.3333V57H38V44.3333ZM50.6667 50.6667V57H57V50.6667H50.6667Z' fill='%23272727'/%3e%3c/svg%3e ");
     background-repeat: no-repeat;
 }
@@ -143,10 +170,11 @@
     grid-column: 11/15;
     grid-row: 5/7;
     background-repeat: no-repeat;
+    margin-left: 10px;
 }
 
 #file-submit p {
-    grid-column: 7/-1;
+    grid-column: 8/-1;
     grid-row: 8/8;
     color: #444444;
 }
@@ -154,11 +182,10 @@
 /*제출 버튼*/
 #submit-button {
     grid-row: 19/20;
-    grid-column: 3/9;
+    grid-column: 2/9;
     background-color: #3048D2;
     padding: 0;
     border: none;
     border-radius: 10px;
 }
-
 
