@@ -1,6 +1,8 @@
+import React from "react";
 import styled from "styled-components"
 import Text from "./atom/Text"
 import logo from "../assets/ORATO-logo.png"
+import closeIcon from "../assets/close.png"; // close 아이콘 import 추가 (경로 확인 필요)
 
 const NavBarContainer = styled.div`
   background-color: #181818;
@@ -12,7 +14,29 @@ const NavBarContainer = styled.div`
   justify-content: space-between;
   font-family: pretendard;
   font-size: 16px;
+  top: 0;
+  left: ${({ isOpen }) => (isOpen ? '0' : '-300px')};
+  transition: left 0.3s ease-in-out;
+  z-index: 1100;
 `
+
+// 닫기 버튼 스타일 컴포넌트 추가
+const CloseButton = styled.button`
+  position: absolute; /* NavBarContainer 내부에서 위치를 잡기 위함 */
+  top: 20px;
+  right: 20px; /* 네브바 우측 상단에 위치 */
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1200; /* 네브바 콘텐츠 위로 올라오도록 */
+
+  img {
+    width: 19px;
+    height: 18px;
+  }
+`;
 
 const Logo = styled.div`
   width: 141px;
@@ -81,12 +105,19 @@ const LogOutBtn = styled.button`
   cursor: pointer;
 `
 
-function NavBar() {
+function NavBar({ isOpen = false, closeNavBar }) {
   const nickname = "변성우"
   const userId = "b2ong222"
 
   return (
-    <NavBarContainer>
+    <NavBarContainer isOpen={isOpen}>
+      {/* 닫기 버튼 추가 (수정) */}
+      {isOpen && (
+        <CloseButton onClick={closeNavBar} aria-label="메뉴 닫기">
+          <img src={closeIcon} alt="닫기 버튼 아이콘" />
+        </CloseButton>
+      )}
+
       <Logo>
         <img src={logo} alt="ORATO 로고" />
       </Logo>

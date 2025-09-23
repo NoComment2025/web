@@ -20,7 +20,7 @@ const baseButtonStyle = css`
 
 const buttonVariants = {
   grayBorder: css`
-    background-color: none;
+    background-color: transparent;
     color: #C0C0C0;
     border: 1px solid #fff;
   `,
@@ -34,6 +34,9 @@ const buttonVariants = {
 
 const StyledButton = styled.button`
   ${baseButtonStyle}
+  display: flex;
+  justify-content: center;
+  align-items: center;
   ${(props) => props.variant && buttonVariants[props.variant]}
   `
 
