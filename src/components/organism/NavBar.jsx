@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components"
-import Text from "./atom/Text"
-import logo from "../assets/ORATO-logo.png"
-import closeIcon from "../assets/close.png"; // close 아이콘 import 추가 (경로 확인 필요)
+import Text from "../atom/Text"
+import logo from "../../assets/ORATO-logo.png";
+import closeIcon from "../../assets/close.png";
 
 const NavBarContainer = styled.div`
   background-color: #181818;
@@ -139,12 +139,12 @@ function NavBar({ isOpen = false, closeNavBar }) {
           <ProfilePicture />
           <div>
             <Text $margin="26px 0 0 13px" fontWeight="500">{nickname} 님</Text>
-            <Text $margin="0px 0 0 13px" fontSize="11px" color="#cccccc">@{userId}</Text>
+            <Text $margin="0px 0 0 13px" $fontSize="0.6875rem" color="#cccccc">@{userId}</Text>
           </div>
         </User>
         <div>
           <LogOutBtn>
-            <Text textAlign="center" fontSize="11px">로그아웃</Text>
+            <Text textAlign="center" $fontSize="0.6875rem">로그아웃</Text>
           </LogOutBtn>
         </div>
       </UserInf>
