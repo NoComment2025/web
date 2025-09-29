@@ -11,6 +11,7 @@ import SignUpPW from './pages/signUp_PW'
 import SignUpTAC from './pages/signUp_TAC'
 import Popup from './pages/popup'
 import GlobalStyle from './styles/GlobalStyle';
+import Test from './pages/test';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/signup-pw" element={<SignUpPW />} />
             <Route path="/signup-tac" element={<SignUpTAC />} />
             <Route path="/popup" element={<Popup />} />
+            <Route path="/test" element={<Test />} />
           </Routes>
         </div>
       </Router>
