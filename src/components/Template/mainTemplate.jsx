@@ -3,7 +3,8 @@ import NavigationSystem from '../organism/NavigationSystem';
 import { CaptionBanner, NameBanner } from '../organism/marqueeBanner';
 import logo from "../../assets/ORATO-logo.png";
 import Text from '../atom/text';
-import Button from '../atom/button';
+import TextButton from '../molecules/TextButton';
+import MicIcon from "../../assets/mainMicIcon.png";
 
 const Logo = styled.img`
   width: 130px;
@@ -15,21 +16,30 @@ const Logo = styled.img`
 const GridContainer = styled.div`
   display: grid;
   grid-template-rows: auto auto 1fr auto;
-  min-height: 100vh; // 전체 화면 높이를 사용
-  grid-gap: 0px; // 그리드 아이템 사이의 간격
+  min-height: 100vh; 
+  grid-gap: 0px; 
 `;
 
 const CenterContent = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* 이 부분을 변경합니다! */
+  justify-content: flex-start;
   align-items: center;
   gap: 15px;
-  /* 필요하다면 여기에 padding-top을 추가하여 상단에서 살짝 내려올 수 있습니다. */
   padding-top: 220px; 
 `;
 
+// 텍스트와 아이콘을 한 줄에 배치
+const TextWithIcon = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0px; 
+`;
 
+const MicImage = styled.img`
+  width: 49px;
+  height: 49px;
+`;
 
 function MainTemplate() {
   return (
@@ -42,9 +52,12 @@ function MainTemplate() {
       <CaptionBanner/>
       
       <CenterContent>
-        <Text $fontSize={'45px'} $fontWeight={'600'}>발표</Text>
+        <TextWithIcon>
+          <Text $fontSize={'45px'} $fontWeight={'600'}>발표</Text>
+          <MicImage src={MicIcon} alt="마이크 아이콘" />
+        </TextWithIcon>
         <Text $fontSize={'30px'} $fontWeight={'600'}>이제 ORATO와 함께 완벽하게</Text>
-        <Button>오라토 하러가기</Button>
+        <TextButton>오라토 하러가기</TextButton>
       </CenterContent>
       
       <NameBanner/>

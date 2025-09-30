@@ -1,27 +1,31 @@
 import React from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 import MainTemplate from '../components/Template/mainTemplate';
 import bgImage from '../assets/main-bg-img.png';
 
-const Container = styled.div`
+const BackgroundSection = styled.div`
   background-image: url(${bgImage});
-  background-size: contain;
+  background-size: cover;     /* 화면에 꽉 채움 */
   background-position: center;
   background-repeat: no-repeat;
-  background-color: #000000;
   width: 100%;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  height: 100vh;              /* 화면 기준 100vh */
+`;
+
+const ContentSection = styled.div`
+  width: 100%;
+  background-color: #000000;  /* 필요시 아래 내용 배경 */
 `;
 
 function Index() {
   return (
     <>
-      <Container>
-        <MainTemplate/>
-      </Container>
+      <BackgroundSection>
+        <MainTemplate />
+      </BackgroundSection>
+      <ContentSection>
+        {/* 실제 긴 내용이 여기에 들어감 */}
+      </ContentSection>
     </>
   );
 }

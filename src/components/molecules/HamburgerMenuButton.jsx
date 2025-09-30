@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import hamburgerIcon from "../../assets/hamburger-menu.png";
 
+// Transient prop 사용: $isVisible
 const StyledButton = styled.button`
   position: fixed;
   top: 20px;
@@ -13,8 +14,8 @@ const StyledButton = styled.button`
   cursor: pointer;
   z-index: 1101;
 
-  opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
-  pointer-events: ${({ isVisible }) => (isVisible ? "auto" : "none")};
+  opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
+  pointer-events: ${({ $isVisible }) => ($isVisible ? "auto" : "none")};
   transition: opacity 0.4s ease;
 
   img {
@@ -25,7 +26,7 @@ const StyledButton = styled.button`
 
 function HamburgerMenuButton({ isVisible, onClick }) {
   return (
-    <StyledButton isVisible={isVisible} onClick={onClick} aria-label="메뉴 열기">
+    <StyledButton $isVisible={isVisible} onClick={onClick} aria-label="메뉴 열기">
       <img src={hamburgerIcon} alt="햄버거 메뉴 아이콘" />
     </StyledButton>
   );
