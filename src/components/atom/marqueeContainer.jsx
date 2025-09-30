@@ -9,6 +9,7 @@ const boxStyle = css`
   overflow: hidden; // 흘러가는 텍스트 잘리는 효과
   display: flex;
   align-items: center;
+  margin-bottom:40px;
 `;
 
 const StyledMarqueeContainer = styled.div`

@@ -7,6 +7,7 @@ const baseButtonStyle = css`
   border-radius: ${(props) => props.$borderRadius || '20px'};
   background-color: ${(props) => props.$backgroundColor || '#3048D2'};
   color: #181818;
+  cursor: pointer;
   `
 
   /**
