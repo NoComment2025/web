@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components"
-import Text from "../atom/Text"
+import Text from "../atom/text";
 import logo from "../../assets/ORATO-logo.png";
 import closeIcon from "../../assets/close.png";
 

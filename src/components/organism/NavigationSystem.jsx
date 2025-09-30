@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import NavBar from './NavBar';
 import HamburgerMenuButton from '../molecules/HamburgerMenuButton';
-import BackgroundOverlay from '../molecules/BackgroundOverlay';
+import BackgroundOverlay from '../atom/BackgroundOverlay';
 
 function NavigationSystem() {
   const [isNavOpen, setIsNavOpen] = useState(false);

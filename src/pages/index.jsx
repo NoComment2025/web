@@ -1,20 +1,6 @@
 import React from 'react';
-import NavigationSystem from '../components/organism/NavigationSystem';
 import styled, { createGlobalStyle } from 'styled-components';
-
-const GlobalStyle = createGlobalStyle`
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-  }
-`;
+import MainTemplate from '../components/Template/mainTemplate';
 
 const Container = styled.div`
   background-color: #000000;
@@ -29,9 +15,8 @@ const Container = styled.div`
 function Index() {
   return (
     <>
-      <GlobalStyle />
       <Container>
-        <NavigationSystem />
+        <MainTemplate/>
       </Container>
     </>
   );

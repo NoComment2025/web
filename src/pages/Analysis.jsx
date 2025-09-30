@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../styles/Analysis.css";
-import NavBar from '../components/NavBar';
-import Text from '../components/Text';
+import NavBar from "../components/organism/NavBar";
+import Text from "../components/atom/Text";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
