@@ -83,6 +83,7 @@ function Analysis() {
     if (selectedCategory && check && subject != '' && upload) {
       setFails((prev) => prev.map(() => 0));
       const formData = new FormData();
+      setStep('list')
     }
   };
 
