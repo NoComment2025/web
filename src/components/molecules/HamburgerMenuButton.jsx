@@ -12,7 +12,7 @@ const StyledButton = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
-  z-index: 1101;
+  z-index: 9999;
 
   opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
   pointer-events: ${({ $isVisible }) => ($isVisible ? "auto" : "none")};

@@ -11,8 +11,6 @@ const BackgroundSection = styled.div`
   background-repeat: no-repeat;
   width: 100%;
   height: 100vh;
-  position: relative;
-  z-index: 1;
 `;
 
 const SecondSection = styled.div`
@@ -20,8 +18,6 @@ const SecondSection = styled.div`
   height: 100vh;
   background-color: #141414;
   color: white;
-  position: relative;
-  z-index: 1;
 `;
 
 const ThirdSection = styled.div`
@@ -29,8 +25,6 @@ const ThirdSection = styled.div`
   height: 100vh;
   background-color: #000000;
   color: white;
-  position: relative;
-  z-index: 1;
 `;
 
 const FourthSection = styled.div`
@@ -38,8 +32,6 @@ const FourthSection = styled.div`
   height: 100vh;
   background-color: #141414;
   color: white;
-  position: relative;
-  z-index: 1;
 `;
 
 function Index() {
