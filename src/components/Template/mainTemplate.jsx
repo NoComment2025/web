@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import NavigationSystem from '../organism/NavigationSystem';
 import { CaptionBanner, NameBanner } from '../organism/marqueeBanner';
@@ -17,23 +18,24 @@ const GridContainer = styled.div`
   display: grid;
   grid-template-rows: auto auto 1fr auto;
   min-height: 100vh; 
-  grid-gap: 0px; 
 `;
 
 const CenterContent = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center; /* 화면 세로 중앙 정렬 */
   align-items: center;
   gap: 15px;
-  padding-top: 220px; 
+  min-height: 100%; /* Grid의 1fr 영역 전체 사용 */
+  padding: 0 20px; /* 좌우 여백 */
+  box-sizing: border-box;
 `;
 
 // 텍스트와 아이콘을 한 줄에 배치
 const TextWithIcon = styled.div`
   display: flex;
   align-items: center;
-  gap: 0px; 
+  gap: 10px; /* 텍스트와 아이콘 사이 간격 */
 `;
 
 const MicImage = styled.img`
@@ -44,13 +46,16 @@ const MicImage = styled.img`
 function MainTemplate() {
   return (
     <GridContainer>
+      {/* 상단 로고 + 네비게이션 */}
       <div>
         <Logo src={logo} alt='ORATO 로고' />
         <NavigationSystem/>
       </div>
       
+      {/* 캡션 배너 */}
       <CaptionBanner/>
       
+      {/* 중앙 콘텐츠 */}
       <CenterContent>
         <TextWithIcon>
           <Text $fontSize={'45px'} $fontWeight={'600'}>발표</Text>
@@ -60,6 +65,7 @@ function MainTemplate() {
         <TextButton>오라토 하러가기</TextButton>
       </CenterContent>
       
+      {/* 하단 이름 배너 */}
       <NameBanner/>
     </GridContainer>
   );

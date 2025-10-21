@@ -1,3 +1,4 @@
+// src/pages/Index.js
 import React from 'react';
 import styled from 'styled-components';
 import MainTemplate from '../components/Template/mainTemplate';
@@ -5,16 +6,18 @@ import bgImage from '../assets/main-bg-img.png';
 
 const BackgroundSection = styled.div`
   background-image: url(${bgImage});
-  background-size: cover;     /* 화면에 꽉 채움 */
+  background-size: cover;     
   background-position: center;
   background-repeat: no-repeat;
   width: 100%;
-  height: 100vh;              /* 화면 기준 100vh */
+  height: 100vh;   /* 첫 화면 꽉 채우기 */
 `;
 
 const ContentSection = styled.div`
   width: 100%;
-  background-color: #000000;  /* 필요시 아래 내용 배경 */
+  min-height: 400vh;  /* 예시: 긴 콘텐츠를 위한 높이 */
+  background-color: #000000;
+  color: white;
 `;
 
 function Index() {
@@ -24,7 +27,9 @@ function Index() {
         <MainTemplate />
       </BackgroundSection>
       <ContentSection>
-        {/* 실제 긴 내용이 여기에 들어감 */}
+        {/* 실제 긴 내용 */}
+        <h1>스크롤 테스트</h1>
+        <p>밑으로 스크롤하면 이 영역이 보입니다.</p>
       </ContentSection>
     </>
   );
