@@ -35,12 +35,79 @@ const records = [
     date: '25.11.25',
     tag: '기타',
   },
-  // 배열에 항목이 추가되면 행도 자동으로 늘어납니다.
+  {
+    id: 5,
+    check: false,
+    status: '분석 중',
+    title: '프로젝트 A',
+    date: '25.11.28',
+    tag: '발표',
+  },
+  {
+    id: 6,
+    check: false,
+    status: '분석 완료됨',
+    title: '프로젝트 B',
+    date: '25.11.29',
+    tag: '연설',
+  },
+  {
+    id: 7,
+    check: false,
+    status: '분석 중',
+    title: '프로젝트 C',
+    date: '25.11.30',
+    tag: '강연',
+  },
+  {
+    id: 8,
+    check: false,
+    status: '분석 완료됨',
+    title: '프로젝트 D',
+    date: '25.12.01',
+    tag: '기타',
+  },
+  {
+    id: 9,
+    check: false,
+    status: '분석 중',
+    title: '프로젝트 E',
+    date: '25.12.02',
+    tag: '발표',
+  },
+  {
+    id: 10,
+    check: false,
+    status: '분석 완료됨',
+    title: '프로젝트 F',
+    date: '25.12.03',
+    tag: '연설',
+  },
+  {
+    id: 11,
+    check: false,
+    status: '분석 중',
+    title: '프로젝트 G',
+    date: '25.12.04',
+    tag: '강연',
+  },
+  {
+    id: 12,
+    check: false,
+    status: '분석 완료됨',
+    title: '프로젝트 H',
+    date: '25.12.05',
+    tag: '기타',
+  },
 ];
 
 const Container = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  width: 955px;
+  height: 76px;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: center;
+  justify-items: center;
 `;
 
 const RadioWrapper = styled.label`
@@ -54,13 +121,8 @@ const RadioWrapper = styled.label`
 
   span {
     box-sizing: border-box;
-
-    position: absolute;
-    left: 5.24%;
-    right: 92.77%;
-    top: 5.45%;
-    bottom: 90.98%;
-
+    width: 20px;
+    height: 20px;
     border: 1px solid #3b3b3b;
     border-radius: 4px;
   }
@@ -69,12 +131,7 @@ const RadioWrapper = styled.label`
   }
 `;
 const Status = styled.span`
-  /* position: absolute;
-  left: 24.29%;
-  right: 67.96%;
-  top: 5.45%;
-  bottom: 90.98%; */
-
+  text-align: center;
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 400;
@@ -85,14 +142,6 @@ const Status = styled.span`
 `;
 
 const Title = styled.span`
-  /* 나르샤 기획 발표 */
-
-  /* position: absolute;
-  left: 44.5%;
-  right: 44.5%;
-  top: 19.74%;
-  bottom: 76.69%; */
-
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 400;
@@ -104,14 +153,7 @@ const Title = styled.span`
 `;
 
 const Date = styled.span`
-  /* 00.00.00 */
-
-  position: absolute;
-  left: 68.9%;
-  right: 25.03%;
-  top: 5.45%;
-  bottom: 90.98%;
-
+  text-align: center;
   font-family: 'Pretendard';
   font-style: normal;
   font-weight: 400;
@@ -120,6 +162,12 @@ const Date = styled.span`
   /* 상자 높이와 동일 */
 
   color: #ffffff;
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 const RecordList = ({ records }) => {
   const [selectedId, setSelectedId] = useState(null);
@@ -139,10 +187,14 @@ const RecordList = ({ records }) => {
           <Status>{record.status}</Status>
           <Title>{record.title}</Title>
           <Date>{record.date}</Date>
-          <Button>{record.tag}</Button>
+          <Button width="70px" height="36px">
+            {record.tag}
+          </Button>
         </Container>
       ))}
     </>
   );
 };
 export default RecordList;
+
+export { records };
