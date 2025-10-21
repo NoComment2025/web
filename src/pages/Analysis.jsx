@@ -28,17 +28,31 @@ function CategoryButton({ id, name, onClick, isTagActive }) {
 }
 
 function Analysis() {
-  const [step, setStep] = useState('upload');
+  const [step, setStep] = useState('list');
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
-  const [date, setDate] = useState(new Date());
   const [isDragging, setIsDragging] = useState(false);
+  const [time, setTime] = useState('');
   const [upload, setUpload] = useState(false);
   const [check, setCheck] = useState(false);
   const [subject, setSubject] = useState('');
   const [fails, setFails] = useState([0, 0, 0, 0]);
   const [videoFiles, setVideoFiles] = useState([]);
   const [musicFiles, setMusicFiles] = useState([]);
+
+  const formatTime = (num) => {
+    const hh = num.substring(0, 2);
+    const mm = num.substring(2, 4);
+    const ss = num.substring(4, 6);
+    return `${hh ? hh + '시 ' : ''}${mm ? mm + '분 ' : ''}${
+      ss ? ss + '초' : ''
+    }`.trim();
+  };
+
+  const timeChange = (e) => {
+    const value = e.target.value.replace(/\D/g, ''); // 숫자만 허용
+    setTime(value.substring(0, 6)); // 최대 6자리(HHMMSS)
+  };
 
   const handleDrag = (e, dragging) => {
     e.preventDefault();
@@ -58,7 +72,7 @@ function Analysis() {
 
     setVideoFiles(videoFiles);
     setMusicFiles(musicFiles);
-    
+
     console.log('파일을 서버로 보내는 기능 만들어야함');
   };
 
@@ -83,6 +97,13 @@ function Analysis() {
     if (selectedCategory && check && subject != '' && upload) {
       setFails((prev) => prev.map(() => 0));
       const formData = new FormData();
+      formData.append('category', selectedCategory);
+      formData.append('time', selectedTime);
+      formData.append('subject', subject);
+      if (selectedTime === 'yes') {
+        formData.append('limitTime', time);
+      }
+      setStep('list');
     }
   };
 
@@ -180,10 +201,12 @@ function Analysis() {
 
               <div id="limitnum">
                 {selectedTime === 'yes' && (
-                  <DatePicker
-                    selected={date}
-                    onChange={(d) => setDate(d)}
-                    dateFormat="hh 시 mm 분 ss 초"
+                  <input
+                    type="text"
+                    value={formatTime(time)}
+                    onChange={timeChange}
+                    onKeyDown={(e) => e.key === 'Enter' && e.preventDefault()}
+                    placeholder="00시 00분 00초"
                     className="datepicker-input"
                   />
                 )}

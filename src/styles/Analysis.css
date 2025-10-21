@@ -168,6 +168,12 @@
   margin-top: 10px;
 }
 
+input[type="time"]::-webkit-calendar-picker-indicator {
+  display: none;       /* 시간 선택 버튼 숨김 */
+  -webkit-appearance: none;
+}
+
+
 .react-datepicker__tab-loop {
   display: none;
 }
