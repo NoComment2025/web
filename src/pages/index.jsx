@@ -10,14 +10,36 @@ const BackgroundSection = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   width: 100%;
-  height: 100vh;   /* 첫 화면 꽉 채우기 */
+  height: 100vh;
+  position: relative;
+  z-index: 1;
 `;
 
-const ContentSection = styled.div`
+const SecondSection = styled.div`
   width: 100%;
-  min-height: 400vh;  /* 예시: 긴 콘텐츠를 위한 높이 */
+  height: 100vh;
+  background-color: #141414;
+  color: white;
+  position: relative;
+  z-index: 1;
+`;
+
+const ThirdSection = styled.div`
+  width: 100%;
+  height: 100vh;
   background-color: #000000;
   color: white;
+  position: relative;
+  z-index: 1;
+`;
+
+const FourthSection = styled.div`
+  width: 100%;
+  height: 100vh;
+  background-color: #141414;
+  color: white;
+  position: relative;
+  z-index: 1;
 `;
 
 function Index() {
@@ -26,11 +48,21 @@ function Index() {
       <BackgroundSection>
         <MainTemplate />
       </BackgroundSection>
-      <ContentSection>
-        {/* 실제 긴 내용 */}
-        <h1>스크롤 테스트</h1>
-        <p>밑으로 스크롤하면 이 영역이 보입니다.</p>
-      </ContentSection>
+      <SecondSection>
+        {/* 2번째 섹션: #141414 */}
+        <h2>Section 2</h2>
+        <p>배경색 #141414</p>
+      </SecondSection>
+      <ThirdSection>
+        {/* 3번째 섹션(100vh): #000 */}
+        <h2>Section 3</h2>
+        <p>배경색 #000 (100vh)</p>
+      </ThirdSection>
+      <FourthSection>
+        {/* 4번째 섹션: #141414 */}
+        <h2>Section 4</h2>
+        <p>배경색 #141414</p>
+      </FourthSection>
     </>
   );
 }

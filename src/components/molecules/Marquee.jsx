@@ -28,7 +28,7 @@ const Inner = styled.div`
   width: max-content;
 `;
 
-export default function Marquee({ items, gap, color = "#4B4B4B", speedPxPerSec = 50 }) {
+export default function Marquee({ items, gap, color = "#4B4B4B", speedPxPerSec = 25 }) {
   const sequenceRef = useRef(null);
   const [durationSec, setDurationSec] = useState(40); // 초기 느린 속도
 

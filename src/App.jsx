@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import styled from 'styled-components';
 import './App.css'
 import Analysis from './pages/Analysis'
 import Index from './pages/index';
@@ -13,12 +14,19 @@ import Popup from './pages/popup'
 import GlobalStyle from './styles/GlobalStyle';
 import Test from './pages/test';
 
+const AppContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+`;
+
 function App() {
   return (
     <>
       <GlobalStyle />
       <Router>
-        <div className="App">
+        <AppContainer>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/analysis" element={<Analysis />} />
@@ -31,7 +39,7 @@ function App() {
             <Route path="/popup" element={<Popup />} />
             <Route path="/test" element={<Test />} />
           </Routes>
-        </div>
+        </AppContainer>
       </Router>
     </>
   );
