@@ -53,7 +53,7 @@ const StudentText = styled.div`
 const TextContainer = styled.div`
   position: absolute;
   top: calc(20px + 0.5vw);  /* 기존 20px에서 0.5vw만큼 더 내림 */
-  left: 5.4vw;
+  left: 4.5vw;
   display: flex;
   flex-direction: row;
   align-items: flex-end;
@@ -65,7 +65,7 @@ const TextContainer = styled.div`
 const AdditionalTextContainer = styled.div`
   position: absolute;
   top: calc(60px + 0.5vw);  /* 기존 60px에서 0.5vw만큼 더 내림 */
-  left: 5.4vw;
+  left: 4.5vw;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
