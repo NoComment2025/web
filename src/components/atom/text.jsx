@@ -9,6 +9,7 @@ const baseTextStyle = css`
   line-height: ${(props) => props.$lineHeight || '1.5'};
   margin: ${(props) => props.$margin || '0'};
   text-align: ${(props) => props.textAlign || 'left'};
+  text-shadow: ${(props) => props.$textShadow || 'none'};
 `;
 
 /**
@@ -19,6 +20,7 @@ const baseTextStyle = css`
  *   - 'fail': 실패 메시지용 텍스트 스타일
  * @예시 <Text $variant="title">주제</Text>
  * @예시 <Text $variant="success">분석 완료</Text>
+ * @예시 <Text $textShadow="2px 2px 4px rgba(0,0,0,0.5)">그림자 텍스트</Text>
  */
 
 const textVariants = {

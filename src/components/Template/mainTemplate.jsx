@@ -93,7 +93,7 @@ function MainTemplate() {
             <Text $fontSize={'45px'} $fontWeight={'600'}>발표</Text>
             <MicImage src={MicIcon} alt="마이크 아이콘" />
           </TextWithIcon>
-          <Text $fontSize={'30px'} $fontWeight={'600'}>이제 ORATO와 함께 완벽하게</Text>
+          <Text $fontSize={'30px'} $fontWeight={'600'} $textShadow="0 0 8px #000">이제 ORATO와 함께 완벽하게</Text>
           <TextButton>오라토 하러가기</TextButton>
         </CenterContent>
         
