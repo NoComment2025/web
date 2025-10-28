@@ -100,9 +100,7 @@ function SignInPassword({ setStep, password, setPassword, checkPassword, setChec
       </div>
 
       <div className="toLogInButtonContainer">
-        <Link to="/signup" className="toLogInButton">
-          로그인
-        </Link>
+        <Link to="/signup" className="toLogInButton">로그인</Link>
       </div>
     </>
   );
