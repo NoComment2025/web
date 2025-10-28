@@ -1,6 +1,6 @@
 import '../styles/signInUsername.css';
 import { Link } from "react-router-dom";
-import SignUp from "../pages/signUp";
+import SignUp from "../pages/signUp.jsx";
 import logo from "../assets/ORATO-logo.png";
 import { useState } from 'react';
 
@@ -44,7 +44,7 @@ function SignInUsername({ setStep, name, setName, id, setId }) {
           />
           
         </div>
-
+        
         <div className="inputContainer">
           <div className='labelRow'>
             <label className="labelText">아이디</label>
@@ -85,9 +85,7 @@ function SignInUsername({ setStep, name, setName, id, setId }) {
           </div>
 
           <div className="toLogInButtonContainer">
-            <Link to="/signup" className="toLogInButton">
-              <SignUp />로그인
-            </Link>
+            <Link to="/signup" className="toLogInButton">로그인</Link>
           </div>
         </div>
       </div>
