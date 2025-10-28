@@ -28,7 +28,7 @@ const ComparisonContainer = styled.div`
   justify-content: center;
   align-items: flex-start;
   width: 100%;
-  gap: 60px; /* 컬럼 간격 */
+  gap: 60px;
   flex-wrap: wrap;
 `;
 
@@ -42,7 +42,7 @@ const Column = styled.div`
 `;
 
 const Label = styled.div`
-  background-color: ${({ active }) => (active ? '#2244FF' : '#2E2E2E')};
+  background-color: ${({ $active }) => ($active ? '#2244FF' : '#2E2E2E')};
   padding: 10px 40px;
   border-radius: 30px;
   font-weight: 600;
@@ -87,39 +87,24 @@ function ThirdSection() {
       </ValuePropositionText>
 
       <ComparisonContainer>
-        {/* Before Column */}
         <Column>
           <Label>Before</Label>
-          <TextItem $variant="caption">
-            혼자 연습하면 부족한 점을 알기 어렵다
-          </TextItem>
-          <TextItem $variant="caption">
-            학교·회사 피드백은 제한적이다
-          </TextItem>
-          <TextItem $variant="caption">
-            전문 코칭은 비용과 시간이 부담된다
-          </TextItem>
+          <TextItem $variant="caption">혼자 연습하면 부족한 점을 알기 어렵다</TextItem>
+          <TextItem $variant="caption">학교·회사 피드백은 제한적이다</TextItem>
+          <TextItem $variant="caption">전문 코칭은 비용과 시간이 부담된다</TextItem>
         </Column>
 
-        {/* Arrow Column */}
         <ArrowColumn>
           <ArrowImg src={arrowImg} alt="arrow" />
           <ArrowImg src={arrowImg} alt="arrow" />
           <ArrowImg src={arrowImg} alt="arrow" />
         </ArrowColumn>
 
-        {/* After Column */}
         <Column>
-          <Label active>After</Label>
-          <TextItem>
-            AI가 <Highlight>발음·속도·제스처</Highlight>까지 정밀 분석
-          </TextItem>
-          <TextItem>
-            개인 <Highlight>맞춤형 피드백</Highlight> 제공
-          </TextItem>
-          <TextItem>
-            누구나 <Highlight>전문적인 발표 훈련</Highlight> 가능
-          </TextItem>
+          <Label $active>After</Label>
+          <TextItem>AI가 <Highlight>발음·속도·제스처</Highlight>까지 정밀 분석</TextItem>
+          <TextItem>개인 <Highlight>맞춤형 피드백</Highlight> 제공</TextItem>
+          <TextItem>누구나 <Highlight>전문적인 발표 훈련</Highlight> 가능</TextItem>
         </Column>
       </ComparisonContainer>
     </ThirdSectionContainer>

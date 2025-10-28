@@ -23,7 +23,7 @@ const ContentWrapper = styled.div`
     max-width: 1100px;
     display: flex;
     flex-direction: column;
-    position: relative; /* KeyFeaturesText 기준 부모 */
+    position: relative;
 `;
 
 const KeyFeaturesText = styled.div`
@@ -41,7 +41,7 @@ const CardContainer = styled.div`
     justify-content: center;
     gap: 2rem;
     flex-wrap: wrap;
-    margin-top: 80px; /* KeyFeaturesText와 카드 간격 */
+    margin-top: 80px; 
 `;
 
 const Card = styled.div`
@@ -49,7 +49,7 @@ const Card = styled.div`
     flex-grow: 1;
     max-width: 350px;
     height: 300px;
-    background-color: ${props => props.bgColor};
+    background-color: ${(props) => props.$bgColor};
     border-radius: 20px;
     padding: 2rem;
     box-sizing: border-box;
@@ -68,17 +68,16 @@ const CardTitle = styled.h3`
     font-size: 1.75rem;
     font-weight: 700;
     margin: 0;
-    color: ${props => props.color || '#FFFFFF'}; // 기본 흰색, 필요하면 다른 색 지정 가능
+    color: ${(props) => props.$color || '#FFFFFF'};
 `;
 
 const CardDescription = styled.p`
     font-size: 1rem;
     font-weight: 400;
     margin: 0.5rem 0 0 0;
-    color: ${props => props.color || '#DDDDDD'}; // 기본 연한 회색, 필요 시 변경 가능
+    color: ${(props) => props.$color || '#DDDDDD'};
     line-height: 1.4;
 `;
-
 
 const IconPlaceholder = styled.div`
     position: absolute;
@@ -101,17 +100,17 @@ function FourthSection() {
         <FourthSectionContainer>
             <ContentWrapper>
                 <KeyFeaturesText>
-                    <Text $fontSize="20px" $fontWeight="400" color="#505050">
+                    <Text $fontSize="20px" $fontWeight="400" $color="#505050">
                         Key Features
                     </Text>
                 </KeyFeaturesText>
 
                 <CardContainer>
                     {/* 카드 1 */}
-                    <Card bgColor="#FFFFFF">
+                    <Card $bgColor="#FFFFFF">
                         <CardTextWrapper>
-                            <CardTitle color='#595959'>영상 분석</CardTitle>
-                            <CardDescription color='#595959'>
+                            <CardTitle $color='#595959'>영상 분석</CardTitle>
+                            <CardDescription $color='#595959'>
                                 몸짓까지 분석하는 발표 코치
                             </CardDescription>
                         </CardTextWrapper>
@@ -121,10 +120,10 @@ function FourthSection() {
                     </Card>
 
                     {/* 카드 2 */}
-                    <Card bgColor="#2F3CDB">
+                    <Card $bgColor="#2F3CDB">
                         <CardTextWrapper>
-                            <CardTitle color='#020273'>음성 분석</CardTitle>
-                            <CardDescription color='#020273'>
+                            <CardTitle $color='#020273'>음성 분석</CardTitle>
+                            <CardDescription $color='#020273'>
                                 목소리 속 감정과 리듬까지
                             </CardDescription>
                         </CardTextWrapper>
@@ -134,10 +133,10 @@ function FourthSection() {
                     </Card>
 
                     {/* 카드 3 */}
-                    <Card bgColor="#4A7AFF">
+                    <Card $bgColor="#4A7AFF">
                         <CardTextWrapper>
-                            <CardTitle color='#0A388B'>피드백 추출</CardTitle>
-                            <CardDescription color='#0A388B'>
+                            <CardTitle $color='#0A388B'>피드백 추출</CardTitle>
+                            <CardDescription $color='#0A388B'>
                                 맞춤형 피드백으로 성장까지
                             </CardDescription>
                         </CardTextWrapper>

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledOverlay = styled.div`
-  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+  display: ${({ $isOpen }) => ($isOpen ? 'block' : 'none')};
   position: fixed;
   top: 0;
   left: 0;
@@ -13,7 +13,7 @@ const StyledOverlay = styled.div`
 `;
 
 function BackgroundOverlay({ isOpen, onClick }) {
-  return <StyledOverlay isOpen={isOpen} onClick={onClick} />;
+  return <StyledOverlay $isOpen={isOpen} onClick={onClick} />;
 }
 
 export default BackgroundOverlay;
