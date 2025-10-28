@@ -1,4 +1,4 @@
-import mike from "../assets/signin-mike-img.png";
+import mike from "../assets/mike-img.png";
 import '../styles/signIn.css';
 import SignInUsername from "../components/signInUsername";
 import SignInPassword from "../components/signInPassword";
