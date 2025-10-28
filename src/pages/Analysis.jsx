@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import '../styles/Analysis.css';
 import Button from '../components/atom/button';
 import NavigationSystem from '../components/organism/NavigationSystem';
@@ -6,6 +6,7 @@ import Text from '../components/atom/text';
 import RecordTable from '../components/organism/RecordTable';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import axios from 'axios';
 
 function CategoryButton({ id, name, onClick, isTagActive }) {
   return (
@@ -38,15 +39,15 @@ function Analysis() {
   const [subject, setSubject] = useState('');
   const [fails, setFails] = useState([0, 0, 0, 0]);
   const [videoFiles, setVideoFiles] = useState([]);
-  const [musicFiles, setMusicFiles] = useState([]);
+  const [serverAnalyzing, setServerAnalyzing] = useState(true);
 
   const formatTime = (num) => {
-    const hh = num.substring(0, 2);
-    const mm = num.substring(2, 4);
-    const ss = num.substring(4, 6);
-    return `${hh ? hh + '시 ' : ''}${mm ? mm + '분 ' : ''}${
-      ss ? ss + '초' : ''
-    }`.trim();
+    const hh = num.slice(0, 2);
+    const mm = num.slice(2, 4);
+    const ss = num.slice(4, 6);
+    return [hh && `${hh}시`, mm && `${mm}분`, ss && `${ss}초`]
+      .filter(Boolean)
+      .join(' ');
   };
 
   const timeChange = (e) => {
@@ -55,28 +56,23 @@ function Analysis() {
   };
 
   const handleDrag = (e, dragging) => {
+    if (serverAnalyzing) return;
     e.preventDefault();
     setIsDragging(dragging);
   };
 
   const handleDrop = (e) => {
+    if (serverAnalyzing) return;
     e.preventDefault();
     setIsDragging(false);
-    const droppedFiles = e.dataTransfer.files;
-    const videoFiles = droppedFiles.filter((file) =>
-      file.type.startsWith('video/')
-    );
-    const musicFiles = droppedFiles.filter((file) =>
-      file.type.startsWith('audio/')
-    );
+    const droppedFiles = Array.from(e.dataTransfer.files);
 
-    setVideoFiles(videoFiles);
-    setMusicFiles(musicFiles);
-
-    console.log('파일을 서버로 보내는 기능 만들어야함');
+    const videos = droppedFiles.filter((f) => f.type.startsWith('video/'));
+    setVideoFiles(videos);
+    setUpload(videos.length > 0);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!selectedCategory) {
       setFails((prev) => prev.map((val, i) => (i === 0 ? 1 : val)));
@@ -95,7 +91,7 @@ function Analysis() {
     }
 
     if (selectedCategory && check && subject != '' && upload) {
-      setFails((prev) => prev.map(() => 0));
+      setFails([0, 0, 0, 0]);
       const formData = new FormData();
       formData.append('category', selectedCategory);
       formData.append('time', selectedTime);
@@ -103,9 +99,39 @@ function Analysis() {
       if (selectedTime === 'yes') {
         formData.append('limitTime', time);
       }
-      setStep('list');
+      videoFiles.forEach((file) => formData.append('videos', file));
+
+      try {
+        const response = await axios.post(
+          'https://your-server.com/api/upload', // 서버 URL
+          formData,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          }
+        );
+
+        console.log('서버 응답:', response.data);
+        setStep('list');
+      } catch (error) {
+        console.error('서버 전송 실패:', error);
+      }
     }
   };
+
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      try {
+        const res = await axios.get('/api/status'); // 서버에서 isAnalyzing 반환
+        setServerAnalyzing(res.data.isAnalyzing);
+      } catch (err) {
+        console.error('서버 상태 확인 실패', err);
+      }
+    }, 5000); // 5초마다 확인
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
@@ -161,7 +187,7 @@ function Analysis() {
                 </Text>
               )}
 
-              {fails[2] === 1 && (
+              {fails[1] === 1 && (
                 <Text variant="fail" id="check-fail">
                   시간 제한 유무를 선택해주세요.
                 </Text>
@@ -225,22 +251,40 @@ function Analysis() {
               onDragOver={(e) => handleDrag(e, true)}
               onDragLeave={(e) => handleDrag(e, false)}
               onDrop={handleDrop}
-              onChange={(e) => {
-                const files = e.target.files;
-                if (files.length > 0) {
-                  // 실제 파일이 선택되었을 때만
-                  console.log('선택된 파일:', files);
-                  setUpload(true);
-                }
-              }}
             >
-              <input type="file" id="fileInput" />
-              <span id="img1"></span>
-              <span id="img2"></span>
-              <Text>끌어서 가져오거나 클릭해 파일 선택하기.</Text>
+              {serverAnalyzing ? (
+                <Text id="never">다른 분석이 진행 중입니다</Text>
+              ) : (
+                <>
+                  <input
+                    type="file"
+                    id="fileInput"
+                    onChange={(e) => {
+                      const files = Array.from(e.target.files);
+                      const videos = files.filter((f) =>
+                        f.type.startsWith('video/')
+                      );
+                      setVideoFiles(videos);
+                      setUpload(videos.length > 0);
+
+                      console.log('🎥 선택된 비디오 파일:', videos);
+                    }}
+                  />
+                  <span id="img1"></span>
+                  <span id="img2"></span>
+                  <Text>끌어서 가져오거나 클릭해 파일 선택하기.</Text>
+                </>
+              )}
             </div>
 
-            <button id="submit-button" type="submit">
+            <button
+              id="submit-button"
+              type="submit"
+              disabled={serverAnalyzing}
+              style={{
+                backgroundColor: serverAnalyzing ? '#3b3b3b' : '#3048d2',
+              }}
+            >
               다음
             </button>
           </form>

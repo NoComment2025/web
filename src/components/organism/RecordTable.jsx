@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Button from '../atom/button';
-import RecordList from '../molecules/RecordeList';
-import { records } from '../molecules/RecordeList';
+import RecordList from './RecordeList';
+import { records } from './RecordeList';
 import { useState } from 'react';
 
 const FilterTable = styled.div`
@@ -44,7 +44,7 @@ const SerchBar = styled.input`
   background-image: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19 19L13 13M1 8C1 8.91925 1.18106 9.82951 1.53284 10.6788C1.88463 11.5281 2.40024 12.2997 3.05025 12.9497C3.70026 13.5998 4.47194 14.1154 5.32122 14.4672C6.1705 14.8189 7.08075 15 8 15C8.91925 15 9.82951 14.8189 10.6788 14.4672C11.5281 14.1154 12.2997 13.5998 12.9497 12.9497C13.5998 12.2997 14.1154 11.5281 14.4672 10.6788C14.8189 9.82951 15 8.91925 15 8C15 7.08075 14.8189 6.1705 14.4672 5.32122C14.1154 4.47194 13.5998 3.70026 12.9497 3.05025C12.2997 2.40024 11.5281 1.88463 10.6788 1.53284C9.82951 1.18106 8.91925 1 8 1C7.08075 1 6.1705 1.18106 5.32122 1.53284C4.47194 1.88463 3.70026 2.40024 3.05025 3.05025C2.40024 3.70026 1.88463 4.47194 1.53284 5.32122C1.18106 6.1705 1 7.08075 1 8Z" stroke="%23414141" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
   background-repeat: no-repeat;
   background-position: 5% center;
-  padding-left: 5%;
+  padding-left: 4%;
   color: #ffffff;
 
   &::placeholder {
@@ -69,8 +69,7 @@ const DataList = styled.div`
   /* Frame 82 */
 
   /* 오토레이아웃 */
-  display: flex;
-  flex-direction: column;
+  display: grid;
   align-items: center;
   justify-items: center;
   padding: 0px;
@@ -109,9 +108,8 @@ const DataDescription = styled.div`
   }
 `;
 const Pagination = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 8px;
+  grid-row: 9;
+  display: block;
   button {
     background: none;
     border: none;
@@ -121,11 +119,11 @@ const Pagination = styled.div`
 `;
 
 const PageBtn = styled.button`
-  background: ${({ active }) => (active ? '#555' : 'none')};
+  background: ${({ $active }) => ($active ? '#555' : 'none')};
   border-radius: 6px;
-  padding: 4px 10px;
+  padding: 4px 12px;
   border: none;
-  color: white;
+  color: #414141;
   cursor: pointer;
 `;
 
@@ -165,9 +163,20 @@ function RecordTable() {
       <DataList>
         <RecordList records={currentRecords} />
         <Pagination>
-          <button onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}>
-            ◀
-          </button>
+          <button
+            onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+            style={{
+              color: '#414141',
+              backgroundImage: `url('data:image/svg+xml,<svg width="7.36" height="12.73" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M0.293258 7.071L5.95026 12.728L7.36426 11.314L2.41426 6.364L7.36426 1.414L5.95026 0L0.293258 5.657C0.105787 5.84453 0.000471592 6.09884 0.000471592 6.364C0.000471592 6.62916 0.105787 6.88347 0.293258 7.071Z" fill="%23414141"/></svg>')`,
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center',
+              backgroundSize: 'contain',
+              width: '7.36px',
+              height: '12.74px',
+              padding: '0px',
+              paddingRight: '50px',
+            }}
+          ></button>
 
           {[...Array(totalPages)].map((_, i) => (
             <PageBtn
@@ -181,9 +190,18 @@ function RecordTable() {
 
           <button
             onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
-          >
-            ▶
-          </button>
+            style={{
+              color: '#414141',
+              backgroundImage: `url('data:image/svg+xml,<svg width="7.36" height="12.73" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.071 7.071L1.414 12.728L0 11.314L4.95 6.364L0 1.414L1.414 0L7.071 5.657C7.25847 5.84453 7.36379 6.09884 7.36379 6.364C7.36379 6.62916 7.25847 6.88347 7.071 7.071Z" fill="%23414141"/></svg>')`,
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center',
+              backgroundSize: 'contain',
+              width: '7.36px',
+              height: '12.74px',
+              padding: '0px',
+              paddingLeft: '50px',
+            }}
+          ></button>
         </Pagination>
       </DataList>
     </>
