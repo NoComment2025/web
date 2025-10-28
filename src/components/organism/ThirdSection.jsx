@@ -81,7 +81,7 @@ function ThirdSection() {
   return (
     <ThirdSectionContainer>
       <ValuePropositionText>
-        <Text color="#505050" $fontSize="18px">
+        <Text color="#505050" $fontSize="20px">
           Value Proposition
         </Text>
       </ValuePropositionText>
