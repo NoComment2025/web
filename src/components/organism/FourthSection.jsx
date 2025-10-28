@@ -32,7 +32,6 @@ const KeyFeaturesText = styled.div`
     left: -120px;
     font-size: 1.5rem;
     font-weight: 500;
-    color: #888888;
     z-index: 10;
 `;
 
@@ -100,7 +99,7 @@ function FourthSection() {
         <FourthSectionContainer>
             <ContentWrapper>
                 <KeyFeaturesText>
-                    <Text $fontSize="20px" $fontWeight="400" $color="#505050">
+                    <Text $fontSize="20px" $fontWeight="400" color="#505050">
                         Key Features
                     </Text>
                 </KeyFeaturesText>
