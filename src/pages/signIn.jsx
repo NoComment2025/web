@@ -1,5 +1,6 @@
-import mike from '../assets/mike-img.png';
-import logo from "../assets/ORATO-logo.png"
+import logo from "../assets/ORATO-logo.png";
+import mike from "../assets/signin-mike-img.png"
+import '../styles/signIn.css'
 import { Link } from "react-router-dom";
 import SignInID from './signIn_ID.jsx'
 import SignInPW from './signIn_PW.jsx'
@@ -78,11 +79,17 @@ function SignIn() {
   return (
     <div className="background">
       <div className="container">
-        <div className="leftContainer">
-          <div className="on">  
-            <p style={{fontSize: '3em', display: 'flex',  alignItems: 'center'}}>
-              발표<img className="mike" src={mike} alt="mike" />
-            </p>
+        <div>
+          <div className="leftContainer">
+            <div className="on">
+              <div>
+                <p style={{ fontSize: '48px' }}>발표</p>
+              </div>
+              <div>
+                <img className="mike" src={mike} alt="mike" />
+              </div>
+            </div>
+            <p style={{ fontSize: '36px' }}>이제 AI와 함께 완벽하게</p>
           </div>
           <p style={{fontSize: '36px'}}>이제 AI와 함께 완벽하게</p>
         </div>
@@ -95,27 +102,43 @@ function SignIn() {
           <SignInID id={id} setId={setId} error={errors.id} />
           <SignInPW password={password} setPassword={setPassword} error={errors.password} />
           
-          <div className="idCheck" onClick={change} >
-            <img 
-                src={idChecked ? checked : notCheck}
-                alt="아이디 저장"
-                className="agreeAllImg"
-            />
-            <p>아이디 저장</p>
-          </div>
+          <div>
+            <div className="inputContainer">
+              <label className="labelText">성명</label>
+              <input className="inputBox" type="text" placeholder="사용자 성명을 입력해주세요." />
+            </div>
 
-          <button className="nextButton" onClick={onClickLogin}>
-            로그인
-          </button>
+            <div className="inputContainer">
+              <label className="labelText">아이디</label>
+              <input className="inputBox" type="text" placeholder="아이디를 입력해주세요." />
+              <div className="pos">
+                <button className="isIdAvailable">중복 확인</button>
+              </div>
+            </div>
 
-          <div className="OAuthButton">
-            <img src="https://img.icons8.com/color/512/google-logo.png" alt="google" className="imgSize" />
-            <img src="https://wiki1.kr/images/thumb/c/cf/%EB%84%A4%EC%9D%B4%EB%B2%84%E3%88%9C_%EB%A1%9C%EA%B3%A0.png/200px-%EB%84%A4%EC%9D%B4%EB%B2%84%E3%88%9C_%EB%A1%9C%EA%B3%A0.png" alt="naver" className="imgSize" />
-            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/KakaoTalk_logo.svg" alt="kakao" className="imgSize" />
-          </div>
+            <div>
+              <div>
+                <button className="nextButton">다음</button>
+              </div>
 
-          <div className="toLogInButtonContainer">
-            <Link to="/signup" className="toLogInButton">회원가입</Link>
+              <div className="OAuthButton">
+                <div>
+                  <img src="https://img.icons8.com/color/512/google-logo.png" alt="google"  className="imgSize" />
+                </div>
+                <div>
+                  <img src="https://wiki1.kr/images/thumb/c/cf/%EB%84%A4%EC%9D%B4%EB%B2%84%E3%88%9C_%EB%A1%9C%EA%B3%A0.png/200px-%EB%84%A4%EC%9D%B4%EB%B2%84%E3%88%9C_%EB%A1%9C%EA%B3%A0.png" alt="naver"  className="imgSize" />
+                </div>
+                <div>
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/KakaoTalk_logo.svg" alt="kakao"  className="imgSize" />
+                </div>
+              </div>
+
+              <div className="toLogInButtonContainer">
+                <Link to="/signup-id" className="toLogInButton">
+                  회원가입
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>

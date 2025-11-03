@@ -1,121 +1,233 @@
+.App {
+  display: grid;
+  background-color: #000000;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  height: 100vh;
+  width: 100vw;
+}
 /*분석창*/
 .analyze {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(10, 1fr);
-    background-color: #000000;
-    grid-column: 2/5;
-    grid-row: 1/-1;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  background-color: #000000;
+  grid-column: 2/5;
+  grid-row: 1/-1;
 }
 
 /*주제 입력 창*/
 #subject-form {
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: repeat(20, 1fr);
-    border-radius: 15px;
-    grid-row: 1/-1;
-    grid-column: 1/-1;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(20, 1fr);
+  border-radius: 15px;
+  grid-row: 1/-1;
+  grid-column: 1/-1;
 }
 
 .subject-box {
-    background-color: #131313;
-    display: grid;
-    grid-template-columns: repeat(50, 1fr);
-    grid-template-rows: repeat(10, 1fr);
-    border-radius: 15px;
-    grid-row: 4/8;
-    grid-column: 2/8;
+  background-color: #131313;
+  display: grid;
+  grid-template-columns: repeat(50, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  border-radius: 15px;
+  grid-row: 4/8;
+  grid-column: 2/9;
 }
 
-.subject-box span {
-    color: #8e8e8e;
-    grid-row: 3/4;
-    grid-column: 6/12;
-    font-size: 20px;
+.subject-box #title {
+  color: #8e8e8e;
+  grid-row: 3/4;
+  grid-column: 4/8;
+  font-size: 20px;
+}
+
+.subject-box #title-fail {
+  position: relative; /* 부모를 기준으로 절대 위치 */
+  margin-bottom: 10px;
+  height: 0;
+  grid-row: 1;
+  grid-column: 40/50;
+}
+
+.subject-box #category-fail {
+  position: relative; /* 부모를 기준으로 절대 위치 */
+  margin-bottom: 10px;
+  height: 0;
+  grid-row: 5;
+  grid-column: 15/29;
+}
+
+.subject-box #check-fail {
+  position: relative; /* 부모를 기준으로 절대 위치 */
+  margin-bottom: 10px;
+  height: 0;
+  grid-row: 5;
+  grid-column: 36/51;
+}
+
+#subject-form #upload-fail {
+  position: relative; /* 부모를 기준으로 절대 위치 */
+  margin-bottom: 10px;
+  height: 0;
+  grid-row: 9;
+  grid-column: 7/10;
+  margin-left: 60px;
 }
 
 #subject-input {
-    background-color: #3b3b3b;
-    border: none;
-    border-radius: 10px;
-    color: white;
-    grid-row: 3/4;
-    grid-column: 12/40;
-    font-size: 20px;
-    padding-left: 10px;
+  background-color: #3b3b3b;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  grid-row: 3/4;
+  grid-column: 8/48;
+  font-size: 20px;
+  padding-left: 15px;
 }
 
 #subject-input::placeholder {
-    color: #7f7f7f;
-    font-size: 15.6px;
-    
+  color: #7f7f7f;
+  font-size: 15.6px;
 }
 
 /*카테고리 버튼*/
 #category-balphyo {
-    grid-column: 3/7;
+  grid-column: 4/8;
 }
 
 #category-yeonseol {
-    grid-column: 8/12;
+  grid-column: 9/13;
 }
 
 #category-gangyeon {
-    grid-column: 13/17;
+  grid-column: 14/18;
 }
 
 #category-guitar {
-    grid-column: 18/22;
+  grid-column: 19/23;
 }
 
 #divid {
-    background-color: #272727;
-    grid-row: 5/10;
-    grid-column: 25;
-    border-radius: 10px;
+  background-color: #272727;
+  grid-row: 5/10;
+  grid-column: 27;
+  border-radius: 10px;
+  width: 3px;
 }
 
 #timeY {
-    grid-row: 6/8;
-    grid-column: 30/40;
-    color: #AEAEAE;
-    font-size: 12px;
+  grid-row: 7/8;
+  grid-column: 31/40;
+  color: #aeaeae;
+  font-size: 12px;
 }
 
 #timeN {
-    grid-row: 6/8;
-    grid-column: 40/50;
-    color: #AEAEAE;
-    font-size: 12px;
+  grid-row: 7/8;
+  grid-column: 41/50;
+  color: #aeaeae;
+  font-size: 12px;
+}
+
+.custom-radio input[type='radio'] {
+  display: none;
+}
+
+.custom-radio span {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  border: 1px solid #aeaeae;
+  border-radius: 25%;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.custom-radio input[type='radio']:checked + span {
+  background-color: #aeaeae;
+}
+
+#limitnum {
+  grid-row: 8/9;
+  grid-column: 31/40;
+  position: relative; /* 부모를 기준으로 절대 위치 */
+  height: 0; /* 공간 차지 안함 */
+}
+
+.datepicker-input {
+  width: 100%;
+  height: 20px;
+  border-radius: 25px;
+  border: 0px solid #3048d2;
+  background-color: #3b3b3b;
+  text-align: center;
+  color: #7f7f7f;
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.react-datepicker__tab-loop {
+  display: none;
 }
 
 /*파일 제출 창*/
 #file-submit {
-    grid-row: 10/14;
-    grid-column: 2/8;
-    background-color: #000000;
-    border: none;
-    border-radius: 30px;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='150'><rect x='5' y='5' width='290' height='140' rx='15' ry='15' fill='none' stroke='%23272727' stroke-width='5' stroke-dasharray='20 12' stroke-linecap='round'/></svg>");
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  grid-row: 10/17;
+  grid-column: 2/9;
+  background-color: #000000;
+  border: none;
+  border-radius: 30px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='150'><rect x='5' y='5' width='290' height='140' rx='15' ry='15' fill='none' stroke='%23272727' stroke-width='5' stroke-dasharray='20 12' stroke-linecap='round'/></svg>");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+#fileInput {
+  display: none;
+}
+
+#file-submit span#img1 {
+  grid-column: 9/12;
+  grid-row: 5/7;
+  margin-left: 10px;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='57' height='57' viewBox='0 0 57 57' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M6.33333 0H0V6.33333H6.33333V0ZM50.6667 12.6667H57V31.6667H50.6667V19H19V50.6667H31.6667V57H12.6667V12.6667H50.6667ZM12.6667 0H19V6.33333H12.6667V0ZM6.33333 12.6667H0V19H6.33333V12.6667ZM0 25.3333H6.33333V31.6667H0V25.3333ZM6.33333 38H0V44.3333H6.33333V38ZM25.3333 0H31.6667V6.33333H25.3333V0ZM44.3333 0H38V6.33333H44.3333V0ZM38 44.3333V38H57V44.3333H50.6667V50.6667H44.3333V57H38V44.3333ZM50.6667 50.6667V57H57V50.6667H50.6667Z' fill='%23272727'/%3e%3c/svg%3e ");
+  background-repeat: no-repeat;
+}
+
+#file-submit span#img2 {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='55' height='55' viewBox='0 0 55 55' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M24.4444 6.11111V0H30.5556V6.11111H36.6667V12.2222H42.7778V18.3333H36.6667V12.2222H30.5556V42.7778H24.4444V12.2222H18.3333V18.3333H12.2222V12.2222H18.3333V6.11111H24.4444ZM0 36.6667V55H55V36.6667H48.8889V48.8889H6.11111V36.6667H0Z' fill='%23272727'/%3e%3c/svg%3e ");
+  grid-column: 11/15;
+  grid-row: 5/7;
+  background-repeat: no-repeat;
+  margin-left: 10px;
+}
+
+#file-submit p {
+  grid-column: 8/-1;
+  grid-row: 8/8;
+  color: #444444;
 }
 
 /*제출 버튼*/
 #submit-button {
-    grid-row: 16/17;
-    grid-column: 2/8;
-    background-color: #3048D2;
-    padding: 0;
-    border: none;
-    border-radius: 10px;
+  grid-row: 19/20;
+  grid-column: 2/9;
+  background-color: #3048d2;
+  padding: 0;
+  border: none;
+  border-radius: 10px;
 }
 
-#root {
-    display: grid;
-    background-color: #000000;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    height: 100vh;
+/*여기서부터 제출 이후의 css*/
+div#Order {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  grid-row: 3;
+  grid-column: 3;
 }
