@@ -2,7 +2,7 @@ import { useState } from "react";
 import eye from "../assets/eye.png";
 import noEye from "../assets/noEye.png";
 
-function SignUpPW({ password, setPassword, error }) {
+function SignInPW({ password, setPassword, error }) {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -30,4 +30,4 @@ function SignUpPW({ password, setPassword, error }) {
   );
 }
 
-export default SignUpPW;
+export default SignInPW;
