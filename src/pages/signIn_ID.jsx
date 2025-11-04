@@ -1,4 +1,4 @@
-function SignUpID({ id, setId, error }) {
+function SignInID({ id, setId, error }) {
   return (
     <div className="inputContainer">
       <div className="labelRow">
@@ -16,4 +16,4 @@ function SignUpID({ id, setId, error }) {
   );
 }
 
-export default SignUpID;
+export default SignInID;
