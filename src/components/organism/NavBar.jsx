@@ -15,7 +15,7 @@ const NavBarContainer = styled.div`
   font-family: pretendard;
   font-size: 16px;
   top: 0;
-  left: ${({ isOpen }) => (isOpen ? '0' : '-300px')};
+  left: ${({ $isOpen }) => ($isOpen ? '0' : '-300px')};
   transition: left 0.3s ease-in-out;
   z-index: 1100;
 `
@@ -110,7 +110,7 @@ function NavBar({ isOpen = false, closeNavBar }) {
   const userId = "b2ong222"
 
   return (
-    <NavBarContainer isOpen={isOpen}>
+    <NavBarContainer $isOpen={isOpen}>
       {/* 닫기 버튼 추가 (수정) */}
       {isOpen && (
         <CloseButton onClick={closeNavBar} aria-label="메뉴 닫기">

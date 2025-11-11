@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './App.css';
-import Analysis from './pages/Analysis';
+import styled from 'styled-components';
+import './App.css'
+import Analysis from './pages/Analysis'
 import Index from './pages/index';
 import Mypage from './pages/mypage';
 import Record from './pages/record';
@@ -14,12 +15,19 @@ import GlobalStyle from './styles/GlobalStyle';
 import Test from './pages/test';
 import RecordDetailModal from './components/organism/RecordDetailModal';
 
+const AppContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+`;
+
 function App() {
   return (
     <>
       <GlobalStyle />
       <Router>
-        <div className="App">
+        <AppContainer>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/analysis" element={<Analysis />} />
@@ -34,7 +42,7 @@ function App() {
             <Route path="/test" element={<Test />} />
 
           </Routes>
-        </div>
+        </AppContainer>
       </Router>
     </>
   );

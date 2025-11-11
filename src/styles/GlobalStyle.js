@@ -10,14 +10,13 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     width: 100%;
     height: 100%;
-    background-color: yellow !important;
+    background-color: transparent;
 
-    /* 스크롤 제거 */
-    overflow: hidden;
-    overscroll-behavior: none; /* 스크롤 바운스 방지 */
-    touch-action: none;        /* 터치 기반 스크롤 방지 */
+    overscroll-behavior: none;
+    touch-action: auto;
+    overflow-x: hidden;
+    overflow-y: scroll; 
 
-    /* 드래그 및 텍스트 선택 방지 */
     user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
