@@ -1,13 +1,140 @@
-import '../styles/signUpUsername.css';
-import { Link } from "react-router-dom";
-import logo from "../assets/ORATO-logo.png";
 import { useState } from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import Oauth from './oauth';
+
+const FormWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+`;
+
+const ContentBlock = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const InputContainer = styled.div`
+  margin-bottom: 1.25em;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const LabelRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 0.6rem;
+`;
+
+const LabelText = styled.label`
+  font-size: 1.4rem;
+  display: flex;
+`;
+
+const WarningText = styled.span`
+  align-content: center;
+  text-align: end;
+  font-size: 12px;
+  color: red;
+`;
+
+const InputBox = styled.input`
+  width: 100%;
+  max-width: 400px;
+  height: 50px;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 15px;
+  border: none;
+  background-color: #3b3b3b;
+  color: #fff;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    color: #8C8C8C;
+  }
+`;
+
+const IdAvailableButton = styled.button`
+  background-color: #3048D2;
+  border: none;
+  border-radius: 8px;
+  padding: 0.25rem 0.8rem;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+
+  &:active {
+    background-color: #1A1A93;
+  }
+`;
+
+const IdCheckButtonPosition = styled.div`
+  margin: 1rem 0 0 0;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  justify-content: flex-end;
+`;
+
+const NextButton = styled.button`
+  background-color: #3048D2;
+  border: none;
+  border-radius: 15px;
+  max-width: 400px;
+  width: 100%;
+  height: 52px;
+  color: #fff;
+  font-size: 1.375rem;
+  cursor: pointer;
+  margin-top: 13px;
+
+  &:active {
+    background-color: #1A1A93;
+  }
+`;
+
+const ToLogInButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const ToLogInLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  width: 400px;
+  height: 52px;
+  border: 1px #fff solid;
+  border-radius: 15px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.375rem;
+  text-decoration: none;
+
+  &:hover {
+    background-color: #fff;
+    color: #000;
+  }
+`;
 
 function SignUpUsername({ setStep, name, setName, id, setId }) {
-  
   const [errors, setErrors] = useState({ name: "", id: "" });
 
-  
   const onClickNext = () => {
     const newErrors = { name: "", id: "" };
 
@@ -16,79 +143,54 @@ function SignUpUsername({ setStep, name, setName, id, setId }) {
 
     setErrors(newErrors);
 
-    
     if (newErrors.name === "" && newErrors.id === "") {
       setStep(2);
     }
   };
 
   return (
-    <>        
-      <div>
-        <div>
-          <img src={logo} alt="로고" className="logo" />
-        </div>
-        <div className="inputContainer">
-          <div className="labelRow">
-            <label className="labelText">성명</label>
-            {errors.name && <span className="warningText">{errors.name}</span>}
-          </div>
-          
-          <input
-            className="inputBox"
+    <FormWrapper>
+      <ContentBlock>
+        <InputContainer>
+          <LabelRow>
+            <LabelText>성명</LabelText>
+            {errors.name && <WarningText>{errors.name}</WarningText>}
+          </LabelRow>
+
+          <InputBox
             type="text"
             placeholder="사용자 성명을 입력해주세요."
             onChange={(e) => setName(e.target.value)}
             value={name}
           />
-          
-        </div>
-        
-        <div className="inputContainer">
-          <div className='labelRow'>
-            <label className="labelText">아이디</label>
-            {errors.id && <span className="warningText">{errors.id}</span>}
-          </div>
-          
-          <input
-            className="inputBox"
+        </InputContainer>
+
+        <InputContainer>
+          <LabelRow>
+            <LabelText>아이디</LabelText>
+            {errors.id && <WarningText>{errors.id}</WarningText>}
+          </LabelRow>
+
+          <InputBox
             type="text"
             placeholder="아이디를 입력해주세요."
             onChange={(e) => setId(e.target.value)}
             value={id}
           />
-          <div className="pos">
-            <button className="isIdAvailable">중복 확인</button>
-          </div>
-        </div>
+          <IdCheckButtonPosition>
+            <IdAvailableButton>중복 확인</IdAvailableButton>
+          </IdCheckButtonPosition>
+        </InputContainer>
+      </ContentBlock>
 
-        
-        <div>
-          <button className="nextButton" onClick={onClickNext}>
-            다음
-          </button>
-        </div>
+      <NextButton onClick={onClickNext}>다음</NextButton>
 
-        
-        <div>
-          <div className="OAuthButton">
-            <div>
-              <img src="https://img.icons8.com/color/512/google-logo.png" alt="google" className="imgSize" />
-            </div>
-            <div>
-              <img src="https://wiki1.kr/images/thumb/c/cf/%EB%84%A4%EC%9D%B4%EB%B2%84%E3%88%9C_%EB%A1%9C%EA%B3%A0.png/200px-%EB%84%A4%EC%9D%B4%EB%B2%84%E3%88%9C_%EB%A1%9C%EA%B3%A0.png" alt="naver" className="imgSize" />
-            </div>
-            <div>
-              <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/KakaoTalk_logo.svg" alt="kakao" className="imgSize" />
-            </div>
-          </div>
+      <Oauth />
 
-          <div className="toLogInButtonContainer">
-            <Link to="/signin" className="toLogInButton">로그인</Link>
-          </div>
-        </div>
-      </div>
-    </>
+      <ToLogInButtonContainer>
+        <ToLogInLink to="/signin">로그인</ToLogInLink>
+      </ToLogInButtonContainer>
+    </FormWrapper>
   );
 }
 
