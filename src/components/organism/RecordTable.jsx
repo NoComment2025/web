@@ -1,57 +1,14 @@
 import styled from 'styled-components';
 import Button from '../atom/button';
-import RecordList from './RecordeList';
-import { records } from './RecordeList';
-import { useState } from 'react';
+import RecordList from './RecordList.jsx';
+import { records } from '../../constants/records.js';
+import { useState, useMemo, useEffect } from 'react';
+import SearchBox from '../molecules/SearchBox';
+import FilterTable from '../molecules/FilterTable';
+import OrderButton from '../molecules/OrderButton';
+import DataDescription from '../molecules/DataDescription';
+import NavigationSystem from './NavigationSystem.jsx';
 
-const FilterTable = styled.div`
-  /* 태그 필터 */
-
-  position: absolute;
-  width: 287px;
-  height: 44px;
-  left: 687px;
-  top: 109px;
-
-  display: inline-grid;
-  grid-auto-flow: column;
-  gap: 10px;
-  grid-row: 2;
-  grid-column: 3;
-  height: fit-content;
-  justify-self: start;
-  background-color: #151515;
-  border-radius: 20px;
-  padding: 5px 7px;
-`;
-
-const SerchBar = styled.input`
-  /* Rectangle 152 */
-
-  position: absolute;
-  width: 329px;
-  height: 44px;
-  left: 994px;
-  top: 109px;
-
-  grid-row: 2;
-  grid-column: 4;
-  /* height: 5vh;
-  width: 40vh; */
-  border-radius: 20px;
-  border: none;
-  background-color: #151515;
-  background-image: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19 19L13 13M1 8C1 8.91925 1.18106 9.82951 1.53284 10.6788C1.88463 11.5281 2.40024 12.2997 3.05025 12.9497C3.70026 13.5998 4.47194 14.1154 5.32122 14.4672C6.1705 14.8189 7.08075 15 8 15C8.91925 15 9.82951 14.8189 10.6788 14.4672C11.5281 14.1154 12.2997 13.5998 12.9497 12.9497C13.5998 12.2997 14.1154 11.5281 14.4672 10.6788C14.8189 9.82951 15 8.91925 15 8C15 7.08075 14.8189 6.1705 14.4672 5.32122C14.1154 4.47194 13.5998 3.70026 12.9497 3.05025C12.2997 2.40024 11.5281 1.88463 10.6788 1.53284C9.82951 1.18106 8.91925 1 8 1C7.08075 1 6.1705 1.18106 5.32122 1.53284C4.47194 1.88463 3.70026 2.40024 3.05025 3.05025C2.40024 3.70026 1.88463 4.47194 1.53284 5.32122C1.18106 6.1705 1 7.08075 1 8Z" stroke="%23414141" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
-  background-repeat: no-repeat;
-  background-position: 5% center;
-  padding-left: 4%;
-  color: #ffffff;
-
-  &::placeholder {
-    color: #414141;
-    font-size: 16px;
-  }
-`;
 const NewOrderButton = styled.button`
   position: absolute;
   width: 63px;
@@ -81,32 +38,6 @@ const DataList = styled.div`
   top: 276px;
 `;
 
-const DataDescription = styled.div`
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(1, 1fr);
-  align-items: center;
-  justify-items: center;
-
-  position: absolute;
-  width: 955px;
-  height: 53px;
-  left: 432px;
-  top: 223px;
-
-  background: #1c1c1c;
-  border-radius: 20px;
-  grid-row: 3;
-  grid-column: 2/4;
-  > span {
-    font-style: normal;
-    font-weight: 500;
-    font-size: 22px;
-    line-height: 26px;
-
-    color: #4a4a4a;
-  }
-`;
 const Pagination = styled.div`
   grid-row: 9;
   display: block;
@@ -127,41 +58,101 @@ const PageBtn = styled.button`
   cursor: pointer;
 `;
 
+const DeleteButton = styled.div`
+  position: absolute;
+  width: 70px;
+  height: 33px;
+  left: 1241px;
+  top: 180px;
+
+  background: #1c1c1c;
+  border-radius: 20px;
+`;
+
 function RecordTable() {
+  const [selectedId, setSelectedId] = useState(null);
+  const [showDelete, setShowDelete] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedTag, setSelectedTag] = useState(null);
+  const [searchKeyword, setSearchKeyword] = useState('');
+  const [order, setOrder] = useState('latest');
+  const filteredRecords = useMemo(() => {
+    let result = [...records];
+
+    // 태그 필터
+    if (selectedTag) {
+      result = result.filter((item) => {
+        if (Array.isArray(item.tag)) {
+          return item.tag.includes(selectedTag);
+        }
+        return item.tag === selectedTag;
+      });
+    }
+
+    // 검색 필터 (제목 기준)
+    if (searchKeyword.trim() !== '') {
+      result = result.filter((item) =>
+        item.title.toLowerCase().includes(searchKeyword.toLowerCase())
+      );
+    }
+
+    // 최신순 / 오래된순 정렬
+    if (order === 'latest') {
+      result.sort((a, b) => new Date(b.date) - new Date(a.date));
+    } else {
+      result.sort((a, b) => new Date(a.date) - new Date(b.date));
+    }
+
+    return result;
+  }, [selectedTag, searchKeyword, order]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedTag, searchKeyword, order]);
   const pageSize = 7;
 
   const startIndex = (currentPage - 1) * pageSize;
-  const currentRecords = records.slice(startIndex, startIndex + pageSize);
-  const totalPages = Math.ceil(records.length / pageSize);
+  const currentRecords = filteredRecords.slice(
+    startIndex,
+    startIndex + pageSize
+  );
+  const totalPages = Math.ceil(filteredRecords.length / pageSize);
   return (
     <>
-      <FilterTable>
-        <Button width="60px" height="30px">
-          발표
-        </Button>
-        <Button width="60px" height="30px">
-          연설
-        </Button>
-        <Button width="60px" height="30px">
-          강연
-        </Button>
-        <Button width="60px" height="30px">
-          기타
-        </Button>
-      </FilterTable>
-      <SerchBar placeholder="Search"></SerchBar>
-      <NewOrderButton> 최신순</NewOrderButton>
-      <DataDescription>
-        <span>선택</span>
-        <span>상태</span>
-        <span>주제</span>
-        <span>날짜</span>
-        <span>태그</span>
-        {/* <DataDescriptionItem></DataDescriptionItem> */}
-      </DataDescription>
+      <NavigationSystem></NavigationSystem>
+      <FilterTable
+        $left='687px'
+        $top='109px'
+        selectedTag={selectedTag}
+        setSelectedTag={setSelectedTag}
+      ></FilterTable>
+      <SearchBox
+        placeholder={'Search'}
+        $left='994px'
+        $top='109px'
+        searchKeyword={searchKeyword}
+        setSearchKeyword={setSearchKeyword}
+      />
+      <OrderButton
+        $left='487px'
+        $top='194px'
+        order={order}
+        setOrder={setOrder}
+      ></OrderButton>
+      <DataDescription
+        left={'432px'}
+        top={'223px'}
+        quantity={5}
+        buttonTexts={['선택', '상태', '주제', '날짜', '태그']}
+      ></DataDescription>
       <DataList>
-        <RecordList records={currentRecords} />
+        <RecordList
+          records={currentRecords}
+          showModal={false}
+          selectedId={selectedId}
+          setSelectedId={setSelectedId}
+          setShowDelete={setShowDelete}
+        />
         <Pagination>
           <button
             onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}

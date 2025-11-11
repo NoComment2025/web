@@ -13,7 +13,7 @@ import SignUpTAC from './pages/signUp_TAC';
 import Popup from './pages/popup';
 import GlobalStyle from './styles/GlobalStyle';
 import Test from './pages/test';
-import RecordDetails from './components/organism/RecordDetails';
+import RecordDetailModal from './components/organism/RecordDetailModal';
 
 const AppContainer = styled.div`
   width: 100%;
@@ -33,13 +33,14 @@ function App() {
             <Route path="/analysis" element={<Analysis />} />
             <Route path="/mypage" element={<Mypage />} />
             <Route path="/record" element={<Record />} />
-            <Route path="/detail/:id" element={<RecordDetails />} />
+            <Route path="/detail/:id" element={<RecordDetailModal />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup-id" element={<SignUpID />} />
             <Route path="/signup-pw" element={<SignUpPW />} />
             <Route path="/signup-tac" element={<SignUpTAC />} />
             <Route path="/popup" element={<Popup />} />
             <Route path="/test" element={<Test />} />
+
           </Routes>
         </AppContainer>
       </Router>

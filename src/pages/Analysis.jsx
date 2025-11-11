@@ -29,7 +29,7 @@ function CategoryButton({ id, name, onClick, isTagActive }) {
 }
 
 function Analysis() {
-  const [step, setStep] = useState('list');
+  const [step, setStep] = useState('upload');
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -39,7 +39,7 @@ function Analysis() {
   const [subject, setSubject] = useState('');
   const [fails, setFails] = useState([0, 0, 0, 0]);
   const [videoFiles, setVideoFiles] = useState([]);
-  const [serverAnalyzing, setServerAnalyzing] = useState(true);
+  const [serverAnalyzing, setServerAnalyzing] = useState(false);
 
   const formatTime = (num) => {
     const hh = num.slice(0, 2);
@@ -93,17 +93,22 @@ function Analysis() {
     if (selectedCategory && check && subject != '' && upload) {
       setFails([0, 0, 0, 0]);
       const formData = new FormData();
-      formData.append('category', selectedCategory);
-      formData.append('time', selectedTime);
-      formData.append('subject', subject);
-      if (selectedTime === 'yes') {
-        formData.append('limitTime', time);
-      }
-      videoFiles.forEach((file) => formData.append('videos', file));
+      // formData.append('category', selectedCategory);
+      // formData.append('time', selectedTime);
+      // formData.append('subject', subject);
+      // if (selectedTime === 'yes') {
+      //   formData.append('limitTime', time);
+      // }
+      // videoFiles.forEach((file) => formData.append('videos', file));
+      formData.append('file', videoFiles[0]);
 
       try {
+        // FormData 생성
+        const formData = new FormData();
+        formData.append('file', videoFiles[0]); // API는 단일 파일(file)만 허용
+
         const response = await axios.post(
-          'https://your-server.com/api/upload', // 서버 URL
+          '/api/assess_pronunciation_md',
           formData,
           {
             headers: {
@@ -113,25 +118,26 @@ function Analysis() {
         );
 
         console.log('서버 응답:', response.data);
-        setStep('list');
+        setStep('result');
       } catch (error) {
         console.error('서버 전송 실패:', error);
+        alert('서버 전송 실패: ' + error.message);
       }
     }
   };
 
-  useEffect(() => {
-    const interval = setInterval(async () => {
-      try {
-        const res = await axios.get('/api/status'); // 서버에서 isAnalyzing 반환
-        setServerAnalyzing(res.data.isAnalyzing);
-      } catch (err) {
-        console.error('서버 상태 확인 실패', err);
-      }
-    }, 5000); // 5초마다 확인
+  // useEffect(() => {
+  //   const interval = setInterval(async () => {
+  //     try {
+  //       const res = await axios.get('/api/status'); // 서버에서 isAnalyzing 반환
+  //       setServerAnalyzing(res.data.isAnalyzing);
+  //     } catch (err) {
+  //       console.error('서버 상태 확인 실패', err);
+  //     }
+  //   }, 5000); // 5초마다 확인
 
-    return () => clearInterval(interval);
-  }, []);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   return (
     <>
