@@ -10,10 +10,10 @@ export const DescriptionBox = styled.div`
   position: absolute;
   width: 955px;
   height: 53px;
-  left: ${(props) => props.left || '0px'};
-  right: ${(props) => props.right || '0px'};
-  top: ${(props) => props.top || '0px'};
-  bottom: ${(props) => props.bottom || '0px'};
+  left: ${(props) => props.$left || '0px'};
+  right: ${(props) => props.$right || '0px'};
+  top: ${(props) => props.$top || '0px'};
+  bottom: ${(props) => props.$bottom || '0px'};
 
   background: #1c1c1c;
   border-radius: 20px;
@@ -31,10 +31,10 @@ export const Button = styled.button`
   border: none !important;
 `;
 export default function DataDescription({
-  left,
-  right,
-  top,
-  bottom,
+  $left,
+  $right,
+  $top,
+  $bottom,
   quantity,
   buttonTexts = [],
 }) {
@@ -44,7 +44,7 @@ export default function DataDescription({
     </Button>
   ));
   return (
-    <DescriptionBox left={left} right={right} top={top} bottom={bottom}>
+    <DescriptionBox $left={$left} $right={$right} $top={$top} $bottom={$bottom}>
       {buttons}
     </DescriptionBox>
   );

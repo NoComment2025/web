@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react';
 import '../styles/Analysis.css';
-import Button from '../components/atom/button';
 import NavigationSystem from '../components/organism/NavigationSystem';
 import Text from '../components/atom/text';
 import RecordTable from '../components/organism/RecordTable';
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import axios from 'axios';
 
@@ -102,27 +100,28 @@ function Analysis() {
       // videoFiles.forEach((file) => formData.append('videos', file));
       formData.append('file', videoFiles[0]);
 
-      try {
-        // FormData 생성
-        const formData = new FormData();
-        formData.append('file', videoFiles[0]); // API는 단일 파일(file)만 허용
+      // try {
+      //   // FormData 생성
+      //   const formData = new FormData();
+      //   formData.append('file', videoFiles[0]); // API는 단일 파일(file)만 허용
 
-        const response = await axios.post(
-          '/api/assess_pronunciation_md',
-          formData,
-          {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-          }
-        );
+      //   const response = await axios.post(
+      //     '/api/assess_pronunciation_md',
+      //     formData,
+      //     {
+      //       headers: {
+      //         'Content-Type': 'multipart/form-data',
+      //       },
+      //     }
+      //   );
 
-        console.log('서버 응답:', response.data);
-        setStep('result');
-      } catch (error) {
-        console.error('서버 전송 실패:', error);
-        alert('서버 전송 실패: ' + error.message);
-      }
+      //   console.log('서버 응답:', response.data);
+      //   setStep('result');
+      // } catch (error) {
+      //   console.error('서버 전송 실패:', error);
+      //   alert('서버 전송 실패: ' + error.message);
+      // }
+      setStep('result');
     }
   };
 
@@ -140,7 +139,7 @@ function Analysis() {
   // }, []);
 
   return (
-    <>
+    <div className="App">
       <NavigationSystem />
       {step === 'upload' ? (
         <div className="analyze">
@@ -298,7 +297,7 @@ function Analysis() {
       ) : (
         <RecordTable></RecordTable>
       )}
-    </>
+    </div>
   );
 }
 

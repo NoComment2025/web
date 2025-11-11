@@ -1,7 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { records } from '../../constants/records.js';
 import Modal from '../molecules/Modal.jsx';
-import styled from 'styled-components';
 
 import * as S from '../../styles/RecordDetailModal.style'
 

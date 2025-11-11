@@ -4,7 +4,7 @@ import Button from '../atom/button';
 export const Filter = styled.div`
   position: absolute;
   width: 287px;
-left: ${(props) => props.$left || '0px'};
+  left: ${(props) => props.$left || '0px'};
   right: ${(props) => props.$right || '0px'};
   top: ${(props) => props.$top || '0px'};
   bottom: ${(props) => props.$bottom || '0px'};

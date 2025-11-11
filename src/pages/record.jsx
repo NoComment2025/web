@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import RecordList from '../components/organism/RecordList.jsx';
 import { records } from '../constants/records.js';
 import { useState, useMemo, useEffect } from 'react';
@@ -6,66 +5,8 @@ import SearchBox from '../components/molecules/SearchBox';
 import FilterTable from '../components/molecules/FilterTable';
 import OrderButton from '../components/molecules/OrderButton';
 import DataDescription from '../components/molecules/DataDescription';
-import RecordDetailModal from '../components/organism/RecordDetailModal.jsx';
-import { useNavigate } from 'react-router-dom';
 import NavigationSystem from '../components/organism/NavigationSystem.jsx';
-
-const DataList = styled.div`
-  display: grid;
-  align-items: center;
-  justify-items: center;
-  padding: 0px;
-
-  position: absolute;
-  width: 955px;
-  height: 532px;
-  left: 432px;
-  top: 276px;
-`;
-
-const Pagination = styled.div`
-  grid-row: 9;
-  display: block;
-  button {
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-  }
-`;
-
-const PageBtn = styled.button`
-  background: ${({ $active }) => ($active ? '#555' : 'none')};
-  border-radius: 6px;
-  padding: 4px 12px;
-  border: none;
-  color: #414141;
-  cursor: pointer;
-`;
-
-const DeleteButton = styled.div`
-  position: absolute;
-  width: 70px;
-  height: 33px;
-  left: 1241px;
-  top: 180px;
-
-  background: #1c1c1c;
-  border-radius: 20px;
-
-  font-family: 'Pretendard';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 19px;
-  /* 상자 높이와 동일 */
-
-  display: flex;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  color: #d00000;
-`;
+import * as S from '../styles/record.style.js'
 
 const Record = ({}) => {
   const [selectedId, setSelectedId] = useState(null);
@@ -110,7 +51,6 @@ const Record = ({}) => {
   }, [selectedTag, searchKeyword, order]);
 
   const pageSize = 7;
-  const Navigate = useNavigate();
   const startIndex = (currentPage - 1) * pageSize;
   const currentRecords = filteredRecords.slice(
     startIndex,
@@ -118,7 +58,7 @@ const Record = ({}) => {
   );
   const totalPages = Math.ceil(filteredRecords.length / pageSize);
   return (
-    <>
+    <div className='App'>
       <NavigationSystem></NavigationSystem>
       <FilterTable
         $left="687px"
@@ -141,12 +81,12 @@ const Record = ({}) => {
       ></OrderButton>
       {showDelete && <DeleteButton>삭제</DeleteButton>}
       <DataDescription
-        left={'432px'}
-        top={'223px'}
+        $left='432px'
+        $top='223px'
         quantity={4}
         buttonTexts={['선택', '주제', '날짜', '태그']}
       ></DataDescription>
-      <DataList>
+      <S.DataList>
         <RecordList
           records={currentRecords}
           showStatus={false}
@@ -154,7 +94,7 @@ const Record = ({}) => {
           setSelectedId={setSelectedId}
           setShowDelete={setShowDelete}
         />
-        <Pagination>
+        <S.Pagination>
           <button
             onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
             style={{
@@ -171,13 +111,13 @@ const Record = ({}) => {
           ></button>
 
           {[...Array(totalPages)].map((_, i) => (
-            <PageBtn
+            <S.PageBtn
               key={i}
               $active={currentPage === i + 1}
               onClick={() => setCurrentPage(i + 1)}
             >
               {i + 1}
-            </PageBtn>
+            </S.PageBtn>
           ))}
 
           <button
@@ -194,9 +134,9 @@ const Record = ({}) => {
               paddingLeft: '50px',
             }}
           ></button>
-        </Pagination>
-      </DataList>
-    </>
+        </S.Pagination>
+      </S.DataList>
+    </div>
   );
 };
 
