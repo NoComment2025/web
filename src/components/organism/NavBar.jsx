@@ -3,6 +3,7 @@ import styled from "styled-components"
 import Text from "../atom/text";
 import logo from "../../assets/ORATO-logo.png";
 import closeIcon from "../../assets/close.png";
+import { Link } from "react-router-dom";
 
 const NavBarContainer = styled.div`
   background-color: #181818;
@@ -15,22 +16,21 @@ const NavBarContainer = styled.div`
   font-family: pretendard;
   font-size: 16px;
   top: 0;
-  left: ${({ isOpen }) => (isOpen ? '0' : '-300px')};
+  left: ${({ $isOpen }) => ($isOpen ? '0' : '-300px')};
   transition: left 0.3s ease-in-out;
   z-index: 1100;
-`
+`;
 
-// 닫기 버튼 스타일 컴포넌트 추가
 const CloseButton = styled.button`
-  position: absolute; /* NavBarContainer 내부에서 위치를 잡기 위함 */
+  position: absolute;
   top: 20px;
-  right: 20px; /* 네브바 우측 상단에 위치 */
+  right: 20px;
   width: 30px;
   height: 30px;
   background: transparent;
   border: none;
   cursor: pointer;
-  z-index: 1200; /* 네브바 콘텐츠 위로 올라오도록 */
+  z-index: 1200;
 
   img {
     width: 19px;
@@ -48,14 +48,17 @@ const Logo = styled.div`
     height: 100%;
     object-fit: contain;
   }
-`
+`;
 
 const Choice = styled.div`
   margin: 0 0 200px 38px;
-`
+`;
 
-const ChoiceBtn = styled.button`
-  text-align: center;
+const ChoiceBtn = styled(Link)`
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+
   width: 205px;
   height: 60px;
   color: #fff;
@@ -64,11 +67,13 @@ const ChoiceBtn = styled.button`
   margin-bottom: 31px;
   border-radius: 10px;
   cursor: pointer;
+  text-decoration: none;
+  text-align: center;
 
   &:hover {
     background-color: #172035;
   }
-`
+`;
 
 const UserInf = styled.div`
   display: flex;
@@ -80,11 +85,11 @@ const UserInf = styled.div`
   text-align: center;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-`
+`;
 
 const User = styled.div`
   display: flex;
-`
+`;
 
 const ProfilePicture = styled.div`
   width: 45px;
@@ -92,7 +97,7 @@ const ProfilePicture = styled.div`
   border-radius: 50%;
   background-color: #7f7f7f;
   margin: 26px 0 0 39px;
-`
+`;
 
 const LogOutBtn = styled.button`
   background-color: #172035;
@@ -103,15 +108,14 @@ const LogOutBtn = styled.button`
   border-radius: 5px;
   margin-top: 15px;
   cursor: pointer;
-`
+`;
 
 function NavBar({ isOpen = false, closeNavBar }) {
-  const nickname = "변성우"
-  const userId = "b2ong222"
+  const nickname = "변성우";
+  const userId = "b2ong222";
 
   return (
-    <NavBarContainer isOpen={isOpen}>
-      {/* 닫기 버튼 추가 (수정) */}
+    <NavBarContainer $isOpen={isOpen}>
       {isOpen && (
         <CloseButton onClick={closeNavBar} aria-label="메뉴 닫기">
           <img src={closeIcon} alt="닫기 버튼 아이콘" />
@@ -123,13 +127,15 @@ function NavBar({ isOpen = false, closeNavBar }) {
       </Logo>
 
       <Choice>
-        <ChoiceBtn>
+        <ChoiceBtn to="/analysis">
           <Text textAlign="center">발표 분석</Text>
         </ChoiceBtn>
-        <ChoiceBtn>
+
+        <ChoiceBtn to="/record">
           <Text textAlign="center">기록</Text>
         </ChoiceBtn>
-        <ChoiceBtn>
+
+        <ChoiceBtn to="/mypage">
           <Text textAlign="center">마이페이지</Text>
         </ChoiceBtn>
       </Choice>
@@ -149,7 +155,7 @@ function NavBar({ isOpen = false, closeNavBar }) {
         </div>
       </UserInf>
     </NavBarContainer>
-  )
+  );
 }
 
-export default NavBar
+export default NavBar;
