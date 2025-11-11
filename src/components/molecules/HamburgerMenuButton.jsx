@@ -10,12 +10,12 @@ const StyledButton = styled.button`
   height: 30px;
   background: transparent;
   border: none;
-  cursor: pointer;
-  z-index: 1101;
+  z-index: 9999;
 
-  opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
-  pointer-events: ${({ isVisible }) => (isVisible ? "auto" : "none")};
-  transition: opacity 0.4s ease;
+  opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
+  pointer-events: ${({ $isVisible }) => ($isVisible ? "auto" : "none")};
+  cursor: ${({ $isVisible }) => ($isVisible ? "pointer" : "default")};
+  transition: opacity 0.4s ease, cursor 0.4s ease;
 
   img {
     width: 19px;
@@ -25,7 +25,11 @@ const StyledButton = styled.button`
 
 function HamburgerMenuButton({ isVisible, onClick }) {
   return (
-    <StyledButton isVisible={isVisible} onClick={onClick} aria-label="메뉴 열기">
+    <StyledButton
+      $isVisible={isVisible}
+      onClick={isVisible ? onClick : undefined}
+      aria-label="메뉴 열기"
+    >
       <img src={hamburgerIcon} alt="햄버거 메뉴 아이콘" />
     </StyledButton>
   );

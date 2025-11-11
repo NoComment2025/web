@@ -118,6 +118,8 @@ function NavBar({ isOpen = false, closeNavBar }) {
 
   return (
     <NavBarContainer $isOpen={isOpen}>
+      {/* 닫기 버튼 추가 (수정) */}
+>
       {isOpen && (
         <CloseButton onClick={closeNavBar} aria-label="메뉴 닫기">
           <img src={closeIcon} alt="닫기 버튼 아이콘" />

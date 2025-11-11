@@ -30,5 +30,4 @@ function TextButton({ children, textColor, variant, onClick, ...props }) {
     </Button>
   );
 }
-
 export default TextButton;
