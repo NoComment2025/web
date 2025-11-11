@@ -168,6 +168,12 @@
   margin-top: 10px;
 }
 
+input[type="time"]::-webkit-calendar-picker-indicator {
+  display: none;       /* 시간 선택 버튼 숨김 */
+  -webkit-appearance: none;
+}
+
+
 .react-datepicker__tab-loop {
   display: none;
 }
@@ -213,11 +219,19 @@
   color: #444444;
 }
 
+#file-submit p#never {
+  position: relative;
+  grid-column: 9/-1;
+  grid-row: 6/8;
+  bottom: 20px;
+  right: 8px;
+  color: #444444;
+}
+
 /*제출 버튼*/
 #submit-button {
   grid-row: 19/20;
   grid-column: 2/9;
-  background-color: #3048d2;
   padding: 0;
   border: none;
   border-radius: 10px;

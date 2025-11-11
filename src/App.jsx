@@ -4,15 +4,16 @@ import styled from 'styled-components';
 import './App.css'
 import Analysis from './pages/Analysis'
 import Index from './pages/index';
-import Mypage from './pages/mypage'
-import Record from './pages/record'
-import SignIn from './pages/signIn'
-import SignUpID from './pages/signUp_ID'
-import SignUpPW from './pages/signUp_PW'
-import SignUpTAC from './pages/signUp_TAC'
-import Popup from './pages/popup'
+import Mypage from './pages/mypage';
+import Record from './pages/record';
+import SignIn from './pages/signIn';
+import SignUpID from './pages/signUp_ID';
+import SignUpPW from './pages/signUp_PW';
+import SignUpTAC from './pages/signUp_TAC';
+import Popup from './pages/popup';
 import GlobalStyle from './styles/GlobalStyle';
 import Test from './pages/test';
+import RecordDetails from './components/organism/RecordDetails';
 
 const AppContainer = styled.div`
   width: 100%;
@@ -32,6 +33,7 @@ function App() {
             <Route path="/analysis" element={<Analysis />} />
             <Route path="/mypage" element={<Mypage />} />
             <Route path="/record" element={<Record />} />
+            <Route path="/detail/:id" element={<RecordDetails />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup-id" element={<SignUpID />} />
             <Route path="/signup-pw" element={<SignUpPW />} />
@@ -45,4 +47,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
