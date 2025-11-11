@@ -38,7 +38,9 @@ const CloseButton = styled.button`
   }
 `;
 
-const Logo = styled.div`
+// ✅ Link 스타일 추가 (홈 이동용)
+const LogoLink = styled(Link)`
+  display: block;
   width: 141px;
   height: 33px;
   margin: 50px 0 0 70px;
@@ -122,20 +124,21 @@ function NavBar({ isOpen = false, closeNavBar }) {
         </CloseButton>
       )}
 
-      <Logo>
+      {/* ✅ 로고 클릭 시 메인(/)으로 이동 */}
+      <LogoLink to="/" onClick={closeNavBar}>
         <img src={logo} alt="ORATO 로고" />
-      </Logo>
+      </LogoLink>
 
       <Choice>
-        <ChoiceBtn to="/analysis">
+        <ChoiceBtn to="/analysis" onClick={closeNavBar}>
           <Text textAlign="center">발표 분석</Text>
         </ChoiceBtn>
 
-        <ChoiceBtn to="/record">
+        <ChoiceBtn to="/record" onClick={closeNavBar}>
           <Text textAlign="center">기록</Text>
         </ChoiceBtn>
 
-        <ChoiceBtn to="/mypage">
+        <ChoiceBtn to="/mypage" onClick={closeNavBar}>
           <Text textAlign="center">마이페이지</Text>
         </ChoiceBtn>
       </Choice>
