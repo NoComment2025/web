@@ -1,9 +1,9 @@
-import NavBar from "../components/NavBar";
+// src/pages/Index.js
+import React from 'react';
+import MainPageTemplate from '../components/Template/MainPageTemplate';
 
 function Index() {
-  return (
-    <NavBar />
-  );
+  return <MainPageTemplate />;
 }
 
 export default Index;
